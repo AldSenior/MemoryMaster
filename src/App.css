@@ -1,0 +1,14 @@
+@import url("./Components/SingleCard/SingleCard.css");
+@font-face {
+  font-family: "RalewayRegular";
+  src: url("../public/fonts/RalewayRegular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "RalewayBold";
+  src: url("../public/fonts/RalewayRegular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+}
