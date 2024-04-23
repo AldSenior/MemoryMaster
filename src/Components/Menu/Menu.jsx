@@ -14,7 +14,7 @@ export const Menu = () => {
           Исследуйте различные режимы игры, бросьте вызов своей памяти и
           отслеживайте свой прогресс.
         </p>
-        <Link to="/MemoryGame"><button className="startbtn">Play</button></Link>
+        <Link to="/SettingMemory"><button className="startbtn">Play</button></Link>
       </div>
       <div className="right">
         <img className="rightimg" src="./Menuright.png" alt="" />

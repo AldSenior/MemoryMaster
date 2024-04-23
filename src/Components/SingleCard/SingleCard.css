@@ -5,6 +5,7 @@ body{
     background-color: #2C2C2C;
 }
 .Game{
+    position: relative;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -12,12 +13,9 @@ body{
     justify-content: center;
     align-items: center;
 }
-.shuffle{
-    width: 32px;
-    height: 32px;
-    background-color: red;
-    border-radius: 4px;
-    border: none;
+.RestBtn{
+    position: relative;
+    bottom: 50px;
 }
 .field{
     width: 500px;
@@ -28,6 +26,13 @@ body{
     align-items: center;
     justify-content: center;
 }
+.btn{
+    background-color: black;
+    position: absolute;
+    top: 100px;
+    width: 90px;
+    border-radius: 5px;
+}
 .card {
     position: relative;
     width: 100px;
@@ -35,7 +40,7 @@ body{
 }
 .card, .back, .front{
 
-    border-radius: 10px;
+    border-radius: 15px;
 }
 .card .front {
     transform:rotateY(90deg);

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import SingleCard from "./Components/SingleCard/SingleCard";
 import { colors } from "./colors";
-import "../src/App.css";
+import "./App.css";
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }
 shuffle(colors);
 
-export const Memory = () => {
+export const Memory = ({difficult}) => {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
   const [ChoiceOne, setChoiceOne] = useState(null);
@@ -74,13 +74,17 @@ export const Memory = () => {
     <>
       <div className="Game">
         <button
+          type="button"
+          className="btn btn-outline-dark  "
           onClick={() => {
             shuffleCards();
-            setAnswers(0)
+            setAnswers(0);
           }}
-          className="shuffle"
-        >Restart</button>
-        
+        >
+          Restart
+        </button>
+
+
         <div className="field">
           {cards.map((card) => (
             <SingleCard

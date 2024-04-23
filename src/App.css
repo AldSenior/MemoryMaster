@@ -1,4 +1,5 @@
 @import url("./Components/SingleCard/SingleCard.css");
+@import url("./Components/Settings/Settings.css");
 @font-face {
   font-family: "RalewayRegular";
   src: url("../public/fonts/RalewayRegular.ttf") format("truetype");
