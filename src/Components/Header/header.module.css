@@ -1,0 +1,16 @@
+.Header{
+    display: flex;
+    flex-direction: row;
+    gap: 48px;
+    position: absolute;
+    top: 0;
+    left:50px;
+}
+.headerlogo{
+    width: 48px;
+    height: 48px;
+}
+li{
+    display: flex;
+    align-items: center;
+}

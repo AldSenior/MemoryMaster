@@ -2,34 +2,40 @@ body{
     margin: 0;
     width: 100vw;
     height: 100vh;
+    position: relative;
     background-color: #2C2C2C;
+}
+.navigation{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
 }
 .Game{
     position: relative;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
-.RestBtn{
-    position: relative;
-    bottom: 50px;
-}
+
 .field{
-    width: 500px;
+    width: 800px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 16px;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 .btn{
     background-color: black;
-    position: absolute;
-    top: 100px;
     width: 90px;
     border-radius: 5px;
 }

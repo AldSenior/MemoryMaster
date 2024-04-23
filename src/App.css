@@ -13,3 +13,7 @@
   font-style: normal;
   font-weight: 700;
 }
+body{
+  width: 100vw;
+  height: 100vh;
+}

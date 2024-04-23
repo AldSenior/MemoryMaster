@@ -30,7 +30,7 @@ body{
 }
 .Logo{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 16px;
     font-size: 32px;
     align-items: center;
@@ -49,8 +49,8 @@ body{
     width: 50%;
 }
 .logoimg{
-    width: 48px;
-    height: 48px;
+    width: 80px;
+    height: 80px;
 }
 .right{
     border-radius: 24px;

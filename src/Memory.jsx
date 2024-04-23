@@ -7,16 +7,16 @@ function shuffle(array) {
 }
 shuffle(colors);
 
-export const Memory = ({difficult}) => {
+export const Memory = ({ difficult }) => {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
   const [ChoiceOne, setChoiceOne] = useState(null);
   const [ChoiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
-  const [quanity, setQuanity] = useState(4);
+  // const [quanity, setQuanity] = useState(4);
   const [answers, setAnswers] = useState(0);
 
-  const cardColors = Array(quanity)
+  const cardColors = Array(difficult)
     .fill(0)
     .map((item, index) => {
       return { src: colors[index], matched: false };
@@ -72,7 +72,7 @@ export const Memory = ({difficult}) => {
   console.log(answers);
   return (
     <>
-      <div className="Game">
+      <nav className="navigation">
         <button
           type="button"
           className="btn btn-outline-dark  "
@@ -83,8 +83,9 @@ export const Memory = ({difficult}) => {
         >
           Restart
         </button>
+      </nav>
 
-
+      <div className="Game">
         <div className="field">
           {cards.map((card) => (
             <SingleCard
@@ -97,7 +98,7 @@ export const Memory = ({difficult}) => {
               disabled={disabled}
             />
           ))}
-          {answers === quanity && <div>Ты выиграл!</div>}
+          {answers === difficult && <div>Ты выиграл!</div>}
         </div>
       </div>
     </>
