@@ -1,4 +1,5 @@
-import "./SingleCard.css";
+
+import style from "./singleCard.module.css"
 export default function SingleCard({
   card,
   handleChoice,
@@ -10,11 +11,11 @@ export default function SingleCard({
     handleChoice(card);
   };
   return (
-    <div className="card" disabled={disabled}>
-      <div className={flipped ? "flipped" : ""}>
-        <div className="front" style={{ backgroundColor: src }}></div>
+    <div className={style["card"]} disabled={disabled}>
+      <div className={flipped ? style["flipped"]: style[""]}>
+        <div className={style["front"]} style={{ backgroundColor: src }}></div>
         <div
-          className="back"
+          className={style["back"]}
           onClick={handleClick}
         ></div>
       </div>

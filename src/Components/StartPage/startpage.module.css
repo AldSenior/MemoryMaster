@@ -9,6 +9,19 @@ body{
     color: white;
     font-family: RalewayRegular;
 }
+.startbtn {
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 4px #eee;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #003CC5 0%, #0B63F6 51%, #003CC5 100%);
+}
+
+.startbtn:hover {
+     background-position: right center;
+}
 .Body{
     width: 80vw;
     height: 80vh;

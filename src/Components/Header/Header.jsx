@@ -1,10 +1,11 @@
 import style from "./header.module.css";
+import { Link } from "react-router-dom";
 export const Header = () => {
   return (
     <>
       <ul className={style["Header"]}>
-        <img className={style["headerlogo"]} src="./logo.png" alt="" />
-        <li className="logo">MemoryMaster</li>
+      <Link to="/"><img className={style["headerlogo"]} src="./imgs/logo.png" alt="" /></Link>
+        <Link to="/"><li className="logo">MemoryMaster</li></Link>
         <li className="Welcome">Welcome</li>
         <li className="Games">Games</li>
         <li className="logo">Пока нету</li>

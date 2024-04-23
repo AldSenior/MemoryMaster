@@ -1,5 +1,6 @@
-@import url("./Components/SingleCard/SingleCard.css");
-@import url("./Components/Settings/Settings.css");
+@import url("./Components/SingleCard/singleCard.module.css");
+@import url("./Components/Settings/settings.module.css");
+@import url("./Components/StartPage/startpage.module.css");
 @font-face {
   font-family: "RalewayRegular";
   src: url("../public/fonts/RalewayRegular.ttf") format("truetype");

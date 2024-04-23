@@ -16,6 +16,7 @@ nav{
     display: flex;
     flex-direction: column;
     font-size: 24px;
+    align-items: center;
 }
 
 .difficulty{
@@ -24,14 +25,15 @@ nav{
     gap: 16px;
     justify-content: left;
 }
-.difficulty:hover{
-    .difficult{
-        visibility: visible;
-    }
-}
+
 ul,li,ol{
     list-style-type:  none;
 }
 .difficult{
     visibility: hidden;
+}
+.difficulty:hover{
+    .difficult{
+        visibility: visible
+    }
 }

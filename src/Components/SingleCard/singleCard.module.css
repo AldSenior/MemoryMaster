@@ -12,8 +12,12 @@ body{
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    top: 0;
+}
+a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 .Game{
     position: relative;
@@ -75,6 +79,6 @@ body{
 }
 .back{
     background-color: red;
-    background-image: url("../../../public/card.jpg");
+    background-image: url("../../../public/imgs/card.jpg");
     background-size: cover;
 }

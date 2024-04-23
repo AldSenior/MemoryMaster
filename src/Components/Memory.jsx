@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import SingleCard from "./Components/SingleCard/SingleCard";
-import { colors } from "./colors";
-import "./App.css";
+import SingleCard from "./SingleCard/SingleCard";
+import style from "./SingleCard/singleCard.module.css"
+import { colors } from "../colors";
+import "../App.css";
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }
@@ -13,7 +14,6 @@ export const Memory = ({ difficult }) => {
   const [ChoiceOne, setChoiceOne] = useState(null);
   const [ChoiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
-  // const [quanity, setQuanity] = useState(4);
   const [answers, setAnswers] = useState(0);
 
   const cardColors = Array(difficult)
@@ -72,10 +72,10 @@ export const Memory = ({ difficult }) => {
   console.log(answers);
   return (
     <>
-      <nav className="navigation">
+      <nav className={style["navigation"]}>
         <button
           type="button"
-          className="btn btn-outline-dark  "
+          className={style["btn btn-outline-dark"]}
           onClick={() => {
             shuffleCards();
             setAnswers(0);
@@ -85,8 +85,8 @@ export const Memory = ({ difficult }) => {
         </button>
       </nav>
 
-      <div className="Game">
-        <div className="field">
+      <div className={style["Game"]}>
+        <div className={style["field"]}>
           {cards.map((card) => (
             <SingleCard
               key={card.id}
