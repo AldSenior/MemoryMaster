@@ -1,11 +1,11 @@
-body{
+body {
     margin: 0;
     width: 100vw;
     height: 100vh;
     position: relative;
-    background-color: #2C2C2C;
+    background-color: #2c2c2c;
 }
-.navigation{
+.navigation {
     width: 100%;
     height: 100px;
     display: flex;
@@ -13,13 +13,13 @@ body{
     align-items: center;
     justify-content: center;
 }
-a{
+a {
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
 }
-.Game{
+.Game {
     position: relative;
     width: 100vw;
     height: 100%;
@@ -28,7 +28,7 @@ a{
     align-items: center;
 }
 
-.field{
+.field {
     width: 800px;
     display: flex;
     flex-direction: row;
@@ -38,7 +38,7 @@ a{
     justify-content: center;
     overflow: hidden;
 }
-.btn{
+.btn {
     background-color: black;
     width: 90px;
     border-radius: 5px;
@@ -48,12 +48,13 @@ a{
     width: 100px;
     height: 148px;
 }
-.card, .back, .front{
-
+.card,
+.back,
+.front {
     border-radius: 15px;
 }
 .card .front {
-    transform:rotateY(90deg);
+    transform: rotateY(90deg);
     transition: all ease-in 0.2s;
     position: absolute;
     width: 100px;
@@ -71,13 +72,12 @@ a{
     width: 100px;
     transition: all ease-in 0.2s;
     transition-delay: 0.2s;
-    
 }
 .flipped .back {
     transform: rotateY(90deg);
-    transition-delay:  0s;
+    transition-delay: 0s;
 }
-.back{
+.back {
     background-color: red;
     background-image: url("../../../public/imgs/card.jpg");
     background-size: cover;

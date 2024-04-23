@@ -1,45 +1,38 @@
 import { Link } from "react-router-dom";
-import { useRef } from "react";
-import style from "./settings.module.css"
-export const SettingMemory = ({ difficult }) => {
-  const diffRef1 = useRef("")
-  const diffRef2 = useRef("")
-  const diffRef3 = useRef("")
-  return (
-    <>
-      <nav>
+import style from "./settings.module.css";
+
+const DIFF_NAMES = ["Easy", "Medium", "Hard"];
+
+function Selectdiff({ level, selected, setQuanity }) {
+    const handleClick = () => {
+        setQuanity((1 + level) * 4);
+    };
+
+    const isSelected = level === selected / 4 - 1;
+
+    return (
+        <li className={`${style["difficult"]} ${isSelected ? "underline" : ""}`} onClick={handleClick}>
+            {DIFF_NAMES[level]}
+        </li>
+    );
+}
+
+export const SettingMemory = ({ setQuanity, quanity }) => {
+    return (
         <ol className={style["settings"]}>
-          <Link to="/MemoryGame">
-            <li>Начать</li>
-          </Link>
-          <ul className={style["difficulty"]}>
-            Cложность
+            <Link to="/MemoryGame">
+                <li>Начать</li>
+            </Link>
 
+            <ul className={style["difficulty"]}>
+                Сложность
+                {DIFF_NAMES.map((item, i) => {
+                    return <Selectdiff level={i} selected={quanity} setQuanity={setQuanity} />;
+                })}
+            </ul>
 
-            
-            <li ref={diffRef1} className={style["difficult"]} onClick={(e)=>{
-              difficult(4)
-              e.target.style.textDecoration="underline"
-              diffRef2.current.style.textDecoration="none"
-              diffRef3.current.style.textDecoration="none"
-            }}>Легкая</li>
-            <li ref={diffRef2} className={style["difficult"]}onClick={(e)=>{
-              difficult(6)
-              e.target.style.textDecoration="underline"
-              diffRef3.current.style.textDecoration="none"
-              diffRef1.current.style.textDecoration="none"
-            }}>Нормальная</li>
-            <li ref={diffRef3} className={style["difficult"]}onClick={(e)=>{
-              difficult(10)
-              e.target.style.textDecoration="underline"
-              diffRef1.current.style.textDecoration="none"
-              diffRef2.current.style.textDecoration="none"
-            }}>Сложная</li>
-          </ul>
-          <li>Чтото ещё</li>
-          <li>Пока не придумал</li>
+            <li>Чтото ещё</li>
+            <li>Пока не придумал</li>
         </ol>
-      </nav>
-    </>
-  );
+    );
 };

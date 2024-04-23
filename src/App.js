@@ -6,24 +6,18 @@ import { Header } from "./Components/Header/Header";
 import { SettingMemory } from "./Components/Settings/SettingsMemory";
 import { Routes, Route } from "react-router-dom";
 export const App = () => {
-  const [quanity, setQuanity] = useState(4);
-  return (
-    <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<StartPage />}></Route>
+    const [quanity, setQuanity] = useState(4);
 
-        <Route
-          path="/SettingMemory"
-          element={<SettingMemory difficult={setQuanity} />}
-        ></Route>
-        <Route
-          path="/MemoryGame"
-          element={<Memory difficult={quanity} />}
-        ></Route>
-      </Routes>
-    </>
-  );
+    return (
+        <>
+            <Header />
+            <Routes>
+                <Route path="/" element={<StartPage />}></Route>
+                <Route path="/SettingMemory" element={<SettingMemory setQuanity={setQuanity} quanity={quanity} />}></Route>
+                <Route path="/MemoryGame" element={<Memory difficult={quanity} />}></Route>
+            </Routes>
+        </>
+    );
 };
 
 export default App;
