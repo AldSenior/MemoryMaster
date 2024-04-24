@@ -17,8 +17,20 @@ ol {
     flex-direction: column;
     font-size: 24px;
     align-items: center;
+    gap: 16px;
+    
+    
 }
-
+.setting{
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    background: radial-gradient(circle at 10% 20%, rgb(53, 54, 58) 0%, rgb(51, 56, 61) 81.3%);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
 .difficulty {
     display: flex;
     flex-direction: row;
@@ -33,6 +45,13 @@ ol {
 }
 .difficult {
     visibility: hidden;
+    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background: #2e2e2e;
+    border-radius: 10px;
 }
 .difficulty:hover {
     .difficult {
@@ -41,5 +60,5 @@ ol {
 }
 
 .underline {
-    text-decoration: underline;
+    background: linear-gradient(180.5deg, rgb(0, 128, 128) 8.5%, rgb(174, 206, 100) 118.2%);
 }

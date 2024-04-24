@@ -16,6 +16,7 @@
     align-items: center;
     justify-content: center;
     word-wrap: break-word;
+    gap: 36px;
 }
 .Logo {
     display: flex;
@@ -49,12 +50,13 @@
     width: 80px;
     height: 80px;
 }
-.right {
+.MenuRight {
     border-radius: 24px;
     height: 100%;
     width: 50%;
-    background-color: #161616;
+    background-image: url("../../../public/imgs/mozgright.png");
     display: flex;
+    background-size: cover;
     align-items: center;
     justify-content: center;
 }

@@ -3,14 +3,38 @@
     flex-direction: row;
     gap: 48px;
     position: fixed;
+    width: 100%;
     top: 0;
-    left: 50px;
+    left: 0;
+    height: 50px;
+    z-index: 2;
+    background-color: #2e2e2e;
+    font-family: RalewayBold;
+    
 }
 .headerlogo {
     width: 48px;
     height: 48px;
 }
+.hea{
+    display: flex;
+    flex-direction: row;
+    gap: 48px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 50px;
+    z-index: 2;
+    background-color: #2e2e2e;
+    font-family: RalewayBold;
+    margin-left: 30px;
+}
 li {
     display: flex;
     align-items: center;
+}
+img{
+    width: 36px;
+    height: 36px;
 }

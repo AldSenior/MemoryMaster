@@ -7,22 +7,23 @@ const links = [
         title: "MemoryMaster",
     },
     {
-        to: "/",
-        title: "Welcome",
+        to: "/Home",
+        title: "Home",
     },
     {
         to: "/",
         title: "Games",
     },
     {
-        to: "/",
-        title: "Пока нету",
+        to: "/Statics",
+        title: "Статистика",
     },
 ];
 
 export const Header = () => {
     return (
-        <ul className={style["Header"]}>
+        <header className={style["Header"]}>
+            <div className={style["hea"]}>
             <Link to="/">
                 <img className={style["headerlogo"]} src="./imgs/logo.png" alt="" />
             </Link>
@@ -30,10 +31,12 @@ export const Header = () => {
             {links.map((item, i) => {
                 return (
                     <Link key={i} to={item.to}>
-                        <li className="logo">{item.title}</li>
+                        {item.img ? <img src={item.img}></img> : ""}
+                        <p className="logo">{item.title}</p>
                     </Link>
                 );
             })}
-        </ul>
+            </div>
+        </header>
     );
 };

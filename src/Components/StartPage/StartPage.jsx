@@ -12,13 +12,12 @@ export const StartPage = () => {
 
                 <h1 className={style["StartText"]}>Начни Играть!</h1>
                 <p className={style["desc"]}>Исследуйте различные режимы игры, бросьте вызов своей памяти и отслеживайте свой прогресс.</p>
-                <Link to="/SettingMemory">
+                <Link to="/Home">
                     <button className={style["startbtn"]}>Start</button>
                 </Link>
             </div>
 
-            <div className={style["right"]}>
-                <img className={style["rightimg"]} src="./Menuright.png" alt="" />
+            <div className={style["MenuRight"]}>
             </div>
         </div>
     );

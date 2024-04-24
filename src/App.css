@@ -1,28 +1,33 @@
 @import url("./Components/SingleCard/singleCard.module.css");
 @import url("./Components/Settings/settings.module.css");
 @import url("./Components/StartPage/startpage.module.css");
+@import url("./Components/Main/main.module.css");
+@import url("./Components/Card/card.module.css");
 @font-face {
-    font-family: "RalewayRegular";
-    src: url("../public/fonts/RalewayRegular.ttf") format("truetype");
-    font-style: normal;
-    font-weight: normal;
+  font-family: "RalewayRegular";
+  src: url("../public/fonts/RalewayRegular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
 }
 
 @font-face {
-    font-family: "RalewayBold";
-    src: url("../public/fonts/RalewayRegular.ttf") format("truetype");
-    font-style: normal;
-    font-weight: 700;
+  font-family: "RalewayBold";
+  src: url("../public/fonts/RalewayRegular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
 }
+
 body {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #161616;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #161616;
 }
-
 * {
-    color: white;
-    font-family: RalewayRegular;
+  color: white;
+  font-family: RalewayRegular;
+  margin: 0;
+  padding: 0;
 }
