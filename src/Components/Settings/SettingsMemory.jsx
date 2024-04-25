@@ -16,7 +16,7 @@ const DIFF_NAMES = [
     },
 ];
 
-function Selectdiff({ level, selected, setQuanity }) {
+function Selectdiff({ level, selected, setQuanity, quanity }) {
     const handleClick = () => {
         setQuanity(DIFF_NAMES[level].kolvo);
     };
@@ -33,14 +33,18 @@ function Selectdiff({ level, selected, setQuanity }) {
 export const SettingMemory = ({ setQuanity, quanity }) => {
     return (
         <ol className={style["settings"]}>
-            <Link to="/MemoryGame">
+            {quanity !== null ? (
+                <Link to="/MemoryGame">
+                    <p className="setting">Start</p>
+                </Link>
+            ) : (
                 <p className="setting">Start</p>
-            </Link>
+            )}
 
             <ul className={style["difficulty"]}>
                 <p className="setting">Difficult</p>
                 {DIFF_NAMES.map((item, i) => {
-                    return <Selectdiff level={i} selected={quanity} setQuanity={setQuanity} />;
+                    return <Selectdiff quanity={quanity} level={i} selected={quanity} setQuanity={setQuanity} />;
                 })}
             </ul>
 

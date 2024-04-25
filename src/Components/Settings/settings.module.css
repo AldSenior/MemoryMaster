@@ -18,10 +18,8 @@ ol {
     font-size: 24px;
     align-items: center;
     gap: 16px;
-    
-    
 }
-.setting{
+.setting {
     width: 250px;
     height: 50px;
     border-radius: 10px;
@@ -44,7 +42,6 @@ ol {
     list-style-type: none;
 }
 .difficult {
-    visibility: hidden;
     width: 180px;
     display: flex;
     align-items: center;
@@ -52,11 +49,6 @@ ol {
     height: 50px;
     background: #2e2e2e;
     border-radius: 10px;
-}
-.difficulty:hover {
-    .difficult {
-        visibility: visible;
-    }
 }
 
 .underline {
