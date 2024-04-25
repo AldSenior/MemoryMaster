@@ -1,0 +1,84 @@
+.navigation {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+*{
+    font-variant-numeric: lining-nums;
+}
+
+.Game {
+    position: relative;
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.field {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+.btn {
+    background-color: black;
+    width: 90px;
+    border-radius: 5px;
+}
+.card {
+    position: relative;
+    width: 100px;
+    height: 150px;
+}
+.card,
+.back,
+.front {
+    border-radius: 15px;
+}
+.card .front {
+    transform: rotateY(90deg);
+    transition: all ease-in 0.2s;
+    position: absolute;
+    width: 100px;
+    height: 150px;
+}
+.flipped .front {
+    transform: rotateY(0deg);
+    transition-delay: 0.2s;
+    width: 100px;
+    height: 150px;
+}
+
+.card .back {
+    height: 150px;
+    width: 100px;
+    transition: all ease-in 0.2s;
+    transition-delay: 0.2s;
+}
+.flipped .back {
+    transform: rotateY(90deg);
+    transition-delay: 0s;
+}
+.back {
+    background-color: red;
+    background-image: url("../../../public/imgs/cardMem.jpg");
+    background-size: cover;
+}

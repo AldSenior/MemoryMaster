@@ -3,6 +3,7 @@
 @import url("./Components/StartPage/startpage.module.css");
 @import url("./Components/Main/main.module.css");
 @import url("./Components/Card/card.module.css");
+@import url("./Components/Memory/memory.module.css");
 @font-face {
   font-family: "RalewayRegular";
   src: url("../public/fonts/RalewayRegular.ttf") format("truetype");

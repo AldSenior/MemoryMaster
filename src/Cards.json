@@ -4,5 +4,11 @@
         "img":"../imgs/cardlogo.png",
         "desc":"adad",
         "link":"/SettingMemory"
+    },
+    {
+        "title":"Последовательность цифр",
+        "img":"../imgs/cardlogo.png",
+        "desc":"adad",
+        "link":"/Numbers"
     }
 ]

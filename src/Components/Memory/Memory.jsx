@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import SingleCard from "./SingleCard/SingleCard";
-import style from "./SingleCard/singleCard.module.css";
-import { colors } from "../colors";
+import SingleCard from "../SingleCard/SingleCard";
+import style from "./memory.module.css";
+import { colors } from "../../colors";
 import { Link } from "react-router-dom";
-import "../App.css";
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }

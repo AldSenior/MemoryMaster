@@ -8,7 +8,7 @@ export const Main = () => {
         <main className={style["MainBody"]}>
             <div className={style["cards"]}>
                 {cardinfo.map((item,index)=>{
-                    return <Link to={cardinfo[index].link}> <Card title={cardinfo[index].title} img={cardinfo[index].img} desc={cardinfo[index].desc} /></Link>
+                     return <Link to={cardinfo[index].link}> <Card title={cardinfo[index].title} img={cardinfo[index].img} /*desc={cardinfo[index].desc} *//></Link>
                 })}
             </div>
         </main>
