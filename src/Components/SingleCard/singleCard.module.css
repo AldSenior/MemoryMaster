@@ -6,30 +6,37 @@
     align-items: center;
     justify-content: center;
 }
+
 a {
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
 }
+*{
+    font-variant-numeric: lining-nums;
+}
+
 .Game {
     position: relative;
     width: 100vw;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100px;
 }
 
 .field {
-    width: 800px;
     display: flex;
+    box-sizing: border-box;
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 8px;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
     gap: 16px;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
 }
 .btn {
     background-color: black;

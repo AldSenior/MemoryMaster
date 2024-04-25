@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import SingleCard from "./SingleCard/SingleCard";
 import style from "./SingleCard/singleCard.module.css";
 import { colors } from "../colors";
+import { Link } from "react-router-dom";
 import "../App.css";
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
@@ -70,31 +71,30 @@ export const Memory = ({ difficult }) => {
     shuffleCards();
   }, []);
   console.log(answers);
-  const size = cards.length
-  let cardSize = Math.sqrt(size)*120
+  const size = cards.length;
+  let cardSize = Math.sqrt(size) * 110;
 
   return (
     <>
-
-
       <div className={style["Game"]}>
-                <button
-          type="button"
-          className={style["btn"]}
-          onClick={() => {
-            setChoiceTwo(null);
-            setChoiceOne(null);
-            shuffleCards();
-            setAnswers(0);
-          }}
-        >
-          Restart
-        </button>
-        <div
-          className={style["field"]}
-          style={{ width: `${cardSize}px`} }
-          
-        >
+        <div className={style["buttons"]}>
+          <button
+            type="button"
+            className={style["btn"]}
+            onClick={() => {
+              setChoiceTwo(null);
+              setChoiceOne(null);
+              shuffleCards();
+              setAnswers(0);
+            }}
+          >
+            Restart
+          </button>
+          <Link to="/SettingMemory">
+            <button className={style["btn"]}>Настройки</button>
+          </Link>
+        </div>
+        <div className={style["field"]} style={{ width: `${cardSize}px` }}>
           {cards.map((card) => (
             <SingleCard
               key={card.id}
