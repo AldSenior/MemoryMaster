@@ -2,18 +2,18 @@ import { Link } from "react-router-dom";
 import style from "./settings.module.css";
 
 const DIFF_NAMES = [
-  {
-    diff: "4x4",
-    kolvo: 8,
-  },
-  {
-    diff: "6x6",
-    kolvo: 18,
-  },
-  {
-    diff: "8x8",
-    kolvo: 32,
-  },
+    {
+        diff: "4x4",
+        kolvo: 8,
+    },
+    {
+        diff: "6x6",
+        kolvo: 18,
+    },
+    {
+        diff: "8x8",
+        kolvo: 32,
+    },
 ];
 
 function Selectdiff({ level, selected, setQuanity }) {
@@ -24,10 +24,7 @@ function Selectdiff({ level, selected, setQuanity }) {
     const isSelected = selected === DIFF_NAMES[level].kolvo;
 
     return (
-        <li
-            className={`${style["difficult"]} ${isSelected ? style[`underline`] : ""} `}
-            onClick={handleClick}
-        >
+        <li className={`${style["difficult"]} ${isSelected ? style[`underline`] : ""} `} onClick={handleClick}>
             {DIFF_NAMES[level].diff}
         </li>
     );
@@ -43,9 +40,7 @@ export const SettingMemory = ({ setQuanity, quanity }) => {
             <ul className={style["difficulty"]}>
                 <p className="setting">Difficult</p>
                 {DIFF_NAMES.map((item, i) => {
-                    return (
-                        <Selectdiff level={i} selected={quanity} setQuanity={setQuanity} />
-                    );
+                    return <Selectdiff level={i} selected={quanity} setQuanity={setQuanity} />;
                 })}
             </ul>
 
