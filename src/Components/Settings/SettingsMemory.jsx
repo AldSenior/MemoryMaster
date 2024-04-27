@@ -16,7 +16,7 @@ const DIFF_NAMES = [
     },
 ];
 
-function Selectdiff({ level, selected, setQuanity, quanity }) {
+function Selectdiff({ level, selected, setQuanity }) {
     const handleClick = () => {
         setQuanity(DIFF_NAMES[level].kolvo);
     };
