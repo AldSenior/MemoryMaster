@@ -1,33 +1,31 @@
-import { useEffect, useState, } from "react";
+import { useEffect, useState, useRef } from "react";
 import style from "./numbergame.module.css";
 
-
-const Answer = ({ answerz, setNumberOrder, NumberOrder }) => {
+const Answer = ({ answerz, setNumberOrder, setSelect, disabled }) => {
   const [spanZIndex, setSpanZIndex] = useState(0);
 
   const time = () =>
     setTimeout(() => {
       setSpanZIndex(-1);
-    }, 1500);
+    }, 5000);
   useEffect(() => {
     time();
   }, []);
-
   const handleClick = () => {
     if (spanZIndex !== 0) {
-      if (NumberOrder !== answerz) {
-        alert("_выв");
-      } else {
-        setSpanZIndex(0);
-        setNumberOrder((prev) => prev + 1);
-      }
+      setSelect(answerz);
+      setSpanZIndex(0);
+      setNumberOrder((prev) => prev + 1);
     }
   };
-  console.log(NumberOrder);
   return (
-    <div className={style["answer"]} onClick={handleClick}>
+    <button
+      className={style["answer"]}
+      onClick={handleClick}
+      disabled={disabled}
+    >
       <span style={{ zIndex: spanZIndex }}>{answerz}</span>
-    </div>
+    </button>
   );
 };
 
@@ -36,35 +34,65 @@ const NoAsnwer = () => {
 };
 
 export const NumbersGame = () => {
-  const [NumberOrder, setNumberOrder] = useState(1);
+  const [NumberOrder, setNumberOrder] = useState(0);
   const [answer, setAnswer] = useState(3);
   const [kvadr, setKvadr] = useState([]);
-
-
+  const [accesAnswer, setAccesAnswer] = useState(0);
+  const [noAccesAnswer, setNoAccesAnswer] = useState(0);
+  const [select, setSelect] = useState(1);
+  const timerRef = useRef("")
+  const [timer, setTimer] = useState(5)
+  useEffect(() => {
+    const timers = setTimeout(() => setTimer(timer - 1), 1000);
+    if (timer == 0) {
+      clearTimeout(timers)
+      timerRef.current.style.visibility = "hidden"
+    }
+  }, [timer, answer]);
 
   useEffect(() => {
     if (NumberOrder === answer) {
-      setTimeout(() => {
-        setAnswer((prev) => prev + 1);
-        setNumberOrder(1);
-      }, 1500);
+      setAccesAnswer((prev) => prev + 1);
+      setAnswer((prev) => prev + 1);
+      setNumberOrder(0);
+      setSelect(1);
+      setTimer(5)
+      timerRef.current.style.visibility = "visible"
+    }
+    if (NumberOrder === answer + 1) {
+      setAnswer((prev) => prev + 1);
+      setNumberOrder(0);
+      setSelect(1);
+      setTimer(5)
+      timerRef.current.style.visibility = "visible"
     }
   }, [NumberOrder, answer]);
-  console.log(NumberOrder);
+  useEffect(() => {
+    if (select !== NumberOrder && NumberOrder !== 0) {
+      setNoAccesAnswer((prev) => prev + 1);
+
+      setNumberOrder(answer + 1);
+    }
+  }, [select]);
+  console.log(select);
 
   const massAnswer = Array(answer)
     .fill(0)
     .map((item, index) => {
       return (
         <Answer
+          disabled={select !== NumberOrder && NumberOrder !== 0 ? true : false}
+          setSelect={setSelect}
+          setAccesAnswer={setAccesAnswer}
+          setNoAccesAnswer={setNoAccesAnswer}
           NumberOrder={NumberOrder}
-          setAnswer={setAnswer}
           setNumberOrder={setNumberOrder}
           answerz={index + 1}
           key={Math.random()}
         />
       );
     });
+
   const massNoAnswer = Array(30 - answer)
     .fill(0)
     .map((item, index) => {
@@ -86,12 +114,15 @@ export const NumbersGame = () => {
   return (
     <div className={style["game"]}>
       <p className={style["comment"]}>кликните от 1 до {answer}</p>
-      <div className={style["field"]}>{kvadr}</div>
-      <p className={style["round"]}>1/{lengthMass}</p>
+      <div className={style["field"]}>{kvadr} <p ref={timerRef} className={style["timer"]}>{timer}</p></div>
+      
+      {/* <p className={style["round"]}>{answer}/{lengthMass}</p> */}
       <p className={style["succes"]}>
-        <span>0</span>
-        <span>0</span>{" "}
+        <span><img className={style["galka"]} src="./imgs/galkaa.png"></img>{accesAnswer}</span>
+        {"  "}
+        <span><img className={style["krest"]} src="./imgs/krest.png" alt="" />{noAccesAnswer}</span>
       </p>
+      
     </div>
   );
 };
