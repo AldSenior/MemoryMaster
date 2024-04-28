@@ -23,7 +23,6 @@ export const App = () => {
           path="/MemoryGame"
           element={<Memory difficult={quanity} />}
         ></Route>
-        <Route path="/Home" element={<Main />}></Route>
         <Route path="/Games" element={<Main />}></Route>
         <Route path="/Numbers" element={<NumbersGame />}></Route>
       </Routes>

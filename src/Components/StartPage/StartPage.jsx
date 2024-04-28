@@ -12,7 +12,7 @@ export const StartPage = () => {
 
                 <h1 className={style["StartText"]}>Начни Играть!</h1>
                 <p className={style["desc"]}>Исследуйте различные режимы игры, бросьте вызов своей памяти и отслеживайте свой прогресс.</p>
-                <Link to="/Home">
+                <Link to="/Games">
                     <button className={style["startbtn"]}>Start</button>
                 </Link>
             </div>

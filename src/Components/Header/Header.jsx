@@ -7,12 +7,8 @@ const links = [
         title: "MemoryMaster",
     },
     {
-        to: "/Home",
-        title: "Home",
-    },
-    {
-        to: "/",
-        title: "Games",
+        to: "/Games",
+        title: "Игры",
     },
     {
         to: "/Statics",
