@@ -25,6 +25,9 @@
     font-size: 32px;
     align-items: center;
 }
+.StartText{
+    font-size: 32px;
+}
 .startbtn {
     text-align: center;
     transition: background-position 0.5s;

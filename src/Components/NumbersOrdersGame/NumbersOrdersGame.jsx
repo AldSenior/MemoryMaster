@@ -1,27 +1,30 @@
 import style from "./numbersOrdersGame.module.css";
 import { colors } from "../../colors";
 import { useEffect, useState } from "react";
-import  Timer  from "../Timer/Timer";
-import { atom , useAtom } from "jotai";
-const orderAtom = atom(1)
-const selectAtom = atom(null)
+import Timer from "../Timer/Timer";
+import { atom, useAtom } from "jotai";
+export const plusAtom = atom(false)
+const orderAtom = atom(1);
+const selectAtom = atom(null);
 const Block = ({ i, setTime }) => {
   const [hid, setHid] = useState(false);
-  const [order,setOrder] = useAtom(orderAtom)
-  const [select,setSelect] = useAtom(selectAtom)
+  const [order, setOrder] = useAtom(orderAtom);
+  const [select, setSelect] = useAtom(selectAtom);
+  const [plus, setPlus] = useAtom(plusAtom)
   const handleClick = () => {
-    setSelect(i)
-    setOrder(order)
+    setSelect(i);
+    setOrder(order);
+    setPlus(!plus)
+    console.log(plus);
     if (order === i) {
-      setHid(true) 
-      setOrder(order+1)
+      setHid(true);
+      setOrder(order + 1);
     } else {
       setHid(false);
-      setTime(prev=>prev+1000)
+      setTime((prev) => prev + 1000);
     }
-    console.log(order,select);
   };
-  
+
   return (
     <div
       style={{
@@ -42,12 +45,12 @@ export const NumbersOrdersGame = () => {
   const [order, setOrder] = useAtom(orderAtom);
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(true);
-
-  useEffect(()=>{
+  
+  useEffect(() => {
     if (order === 26) {
-      setIsRunning(false)
+      setIsRunning(false);
     }
-  },[order])
+  }, [order]);
 
   const mass = Array(25)
     .fill(0)
@@ -74,9 +77,18 @@ export const NumbersOrdersGame = () => {
 
   return (
     <div className={style["game"]}>
-      {/* <button>Пауза</button> */}
-      <p>Текущее число:{order}</p>
-      <div className="timer">{<Timer time={time} setTime={setTime} isRunning={isRunning} setIsRunning={setIsRunning} />}</div>
+      <div className={style["timer"]}>
+        <p className={style["order"]}>Текущее число:{order}</p>
+        {
+          <Timer
+            time={time}
+            setTime={setTime}
+            isRunning={isRunning}
+            setIsRunning={setIsRunning}
+
+          />
+        }
+      </div>
       <div className={style["field"]}>{cards}</div>
     </div>
   );

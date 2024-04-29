@@ -1,5 +1,5 @@
 h1{
-    font-size: 16px;
+    font-size: 20px;
 }
 p{
     text-align: center;
@@ -7,6 +7,11 @@ p{
 .timer{
     display: flex;
     flex-direction: row;
+    position: relative;
+    width: 50px;
+    height: 19px;
+    align-items: center;
+    justify-content: center;
 }
 .time{
     position: fixed;

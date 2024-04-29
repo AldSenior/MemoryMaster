@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import style from "./timer.module.css"
+import { plusAtom } from "../NumbersOrdersGame/NumbersOrdersGame";
+import { useAtom } from "jotai";
 const Timer = ({time, setTime, isRunning, setIsRunning}) => {
-  
-
+  const plus = useAtom(plusAtom)
   useEffect(() => {
     let interval = null;
 
@@ -32,7 +33,7 @@ const Timer = ({time, setTime, isRunning, setIsRunning}) => {
 
   return (
     <div className={style["timer"]}>
-      <h1 className={style["time"]}>Время:{(time / 1000).toFixed(2)}</h1>
+      <h1 className={style["time"]}>Время:{(time / 1000).toFixed(2)} </h1>
       {/* <div>
          <button onClick={startTimer}>Старт</button> 
         <button onClick={stopTimer}>Стоп</button>

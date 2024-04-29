@@ -74,6 +74,11 @@ export const Memory = ({ difficult }) => {
       window.location.href = "/SettingMemory";
     }
   }, [difficult]);
+  useEffect(()=>{
+    if (answers === difficult) {
+      setIsRunning(false)
+    }
+  },[answers])
   const size = cards.length;
   let cardSize = Math.sqrt(size) * 110;
 
