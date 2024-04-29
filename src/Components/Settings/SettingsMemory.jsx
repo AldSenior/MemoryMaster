@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import style from "./settings.module.css";
+import { useState } from "react";
 
 const DIFF_NAMES = [
     {
@@ -16,7 +17,7 @@ const DIFF_NAMES = [
     },
 ];
 
-function Selectdiff({ level, selected, setQuanity }) {
+function Selectdiff({ level, selected, setQuanity, vis }) {
     const handleClick = () => {
         setQuanity(DIFF_NAMES[level].kolvo);
     };
@@ -24,13 +25,14 @@ function Selectdiff({ level, selected, setQuanity }) {
     const isSelected = selected === DIFF_NAMES[level].kolvo;
 
     return (
-        <li className={`${style["difficult"]} ${isSelected ? style[`underline`] : ""} `} onClick={handleClick}>
+        <li style={{visibility : vis ? "visible" : "hidden"}} key={Math.random()} className={`${style["difficult"]} ${isSelected ? style[`underline`] : ""} `} onClick={handleClick}>
             {DIFF_NAMES[level].diff}
         </li>
     );
 }
 
 export const SettingMemory = ({ setQuanity, quanity }) => {
+    const [vis,setVis] = useState(false)
     return (
         <ol className={style["settings"]}>
             {quanity !== null ? (
@@ -42,14 +44,13 @@ export const SettingMemory = ({ setQuanity, quanity }) => {
             )}
 
             <ul className={style["difficulty"]}>
-                <p className="setting">Difficult</p>
+                <p className="setting" onClick={()=>[
+                    setVis(prev=>!prev)
+                ]}>Difficult</p>
                 {DIFF_NAMES.map((item, i) => {
-                    return <Selectdiff quanity={quanity} level={i} selected={quanity} setQuanity={setQuanity} />;
+                    return <Selectdiff vis={vis} key={Math.random()} quanity={quanity} level={i} selected={quanity} setQuanity={setQuanity} />;
                 })}
             </ul>
-
-            <p className="setting">Чтото ещё</p>
-            <p className="setting">Пока не придумал</p>
         </ol>
     );
 };

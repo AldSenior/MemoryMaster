@@ -5,6 +5,6 @@ function random_rgba() {
         s = 255;
     return "rgba(" + o(r() * s) + "," + o(r() * s) + "," + o(r() * s) + "," + r().toFixed(1) + ")";
 }
-for (let i = 0; i < 24; i++) {
+for (let i = 0; i < 64; i++) {
     colors.push(random_rgba());
 }

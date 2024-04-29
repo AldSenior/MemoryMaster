@@ -37,10 +37,14 @@ a {
     display: flex;
     flex-direction: row;
     gap: 16px;
+    width: 400px;
+    align-items: center;
+    justify-content: left;
 }
 .btn {
     background-color: black;
     width: 90px;
+    height: 40px;
     border-radius: 5px;
 }
 .card {
@@ -81,4 +85,10 @@ a {
     background-color: red;
     background-image: url("../../../public/imgs/cardMem.jpg");
     background-size: cover;
+}
+.turns{
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
 }

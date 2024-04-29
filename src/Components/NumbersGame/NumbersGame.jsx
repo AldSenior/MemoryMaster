@@ -40,13 +40,13 @@ export const NumbersGame = () => {
   const [accesAnswer, setAccesAnswer] = useState(0);
   const [noAccesAnswer, setNoAccesAnswer] = useState(0);
   const [select, setSelect] = useState(1);
-  const timerRef = useRef("")
-  const [timer, setTimer] = useState(5)
+  const timerRef = useRef("");
+  const [timer, setTimer] = useState(5);
   useEffect(() => {
     const timers = setTimeout(() => setTimer(timer - 1), 1000);
     if (timer == 0) {
-      clearTimeout(timers)
-      timerRef.current.style.visibility = "hidden"
+      clearTimeout(timers);
+      timerRef.current.style.visibility = "hidden";
     }
   }, [timer, answer]);
 
@@ -56,26 +56,23 @@ export const NumbersGame = () => {
       setAnswer((prev) => prev + 1);
       setNumberOrder(0);
       setSelect(1);
-      setTimer(5)
-      timerRef.current.style.visibility = "visible"
+      setTimer(5);
+      timerRef.current.style.visibility = "visible";
     }
     if (NumberOrder === answer + 1) {
       setAnswer((prev) => prev + 1);
       setNumberOrder(0);
       setSelect(1);
-      setTimer(5)
-      timerRef.current.style.visibility = "visible"
+      setTimer(5);
+      timerRef.current.style.visibility = "visible";
     }
   }, [NumberOrder, answer]);
   useEffect(() => {
     if (select !== NumberOrder && NumberOrder !== 0) {
       setNoAccesAnswer((prev) => prev + 1);
-
       setNumberOrder(answer + 1);
     }
   }, [select]);
-  console.log(select);
-
   const massAnswer = Array(answer)
     .fill(0)
     .map((item, index) => {
@@ -109,20 +106,28 @@ export const NumbersGame = () => {
   useEffect(() => {
     shuffleCards();
   }, [answer]);
-  const lengthMass = massAnswer.length + massNoAnswer.length;
 
   return (
     <div className={style["game"]}>
       <p className={style["comment"]}>кликните от 1 до {answer}</p>
-      <div className={style["field"]}>{kvadr} <p ref={timerRef} className={style["timer"]}>{timer}</p></div>
-      
-      {/* <p className={style["round"]}>{answer}/{lengthMass}</p> */}
+      <div className={style["field"]}>
+        {kvadr}{" "}
+        <p ref={timerRef} className={style["timer"]}>
+          {timer}
+        </p>
+      </div>
+
       <p className={style["succes"]}>
-        <span><img className={style["galka"]} src="./imgs/galkaa.png"></img>{accesAnswer}</span>
+        <span>
+          <img className={style["galka"]} src="./imgs/galkaa.png"></img>
+          {accesAnswer}
+        </span>
         {"  "}
-        <span><img className={style["krest"]} src="./imgs/krest.png" alt="" />{noAccesAnswer}</span>
+        <span>
+          <img className={style["krest"]} src="./imgs/krest.png" alt="" />
+          {noAccesAnswer}
+        </span>
       </p>
-      
     </div>
   );
 };

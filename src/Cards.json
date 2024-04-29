@@ -2,13 +2,16 @@
     {
         "title":"Memory Cards",
         "img":"../imgs/cardlogo.png",
-        "desc":"adad",
         "link":"/SettingMemory"
     },
     {
         "title":"Последовательность цифр",
         "img":"../imgs/cardNumber.jpg",
-        "desc":"adad",
         "link":"/Numbers"
+    },
+    {
+        "title":"Порядок чисел",
+        "img":"../imgs/logo_MemorOrderNumGame.jpg",
+        "link":"/NumbersOrders"
     }
 ]

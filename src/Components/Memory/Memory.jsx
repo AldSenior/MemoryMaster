@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import SingleCard from "../SingleCard/SingleCard";
 import style from "./memory.module.css";
 import { colors } from "../../colors";
+import Timer from "../Timer/Timer";
 import { Link } from "react-router-dom";
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
@@ -9,23 +10,14 @@ function shuffle(array) {
 shuffle(colors);
 
 export const Memory = ({ difficult }) => {
-
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
   const [ChoiceOne, setChoiceOne] = useState(null);
   const [ChoiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
   const [answers, setAnswers] = useState(0);
-
-  const [seconds, setSeconds] = useState(0);
-
-
-
-
-
-  useEffect(() => {
-    setTimeout(() => setSeconds(seconds + 1), 1000);
-  }, [seconds]);
+  const [time, setTime] = useState(0);
+  const [isRunning, setIsRunning] = useState(true);
 
   const cardColors = Array(difficult)
     .fill(0)
@@ -77,11 +69,11 @@ export const Memory = ({ difficult }) => {
   useEffect(() => {
     shuffleCards();
   }, []);
-  useEffect(()=>{
-    if (performance.navigation.type == 1) {
-      window.location.href = "/SettingMemory"
-      } 
-  },[difficult])
+  useEffect(() => {
+    if (performance.navigation.type == 1 && difficult == null) {
+      window.location.href = "/SettingMemory";
+    }
+  }, [difficult]);
   const size = cards.length;
   let cardSize = Math.sqrt(size) * 110;
 
@@ -97,6 +89,7 @@ export const Memory = ({ difficult }) => {
               setChoiceOne(null);
               shuffleCards();
               setAnswers(0);
+              setTime(0);
             }}
           >
             Restart
@@ -104,9 +97,17 @@ export const Memory = ({ difficult }) => {
           <Link to="/SettingMemory">
             <button className={style["btn"]}>Настройки</button>
           </Link>
-          <p className={style["turns"]}>
-            Шагов:{turns} <span>Таймер:{seconds}</span>
-          </p>
+          <div className={style["turns"]}>
+            Шагов:{turns}{" "}
+            <p>
+              <Timer
+                time={time}
+                setTime={setTime}
+                isRunning={isRunning}
+                setIsRunning={setIsRunning}
+              />
+            </p>
+          </div>
         </div>
 
         <div className={style["field"]} style={{ width: `${cardSize}px` }}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import "../src/App.css";
 import Memory from "./Components/Memory/Memory";
 import { StartPage } from "./Components/StartPage/StartPage";
@@ -6,6 +6,7 @@ import { Header } from "./Components/Header/Header";
 import { SettingMemory } from "./Components/Settings/SettingsMemory";
 import { Routes, Route } from "react-router-dom";
 import { NumbersGame } from "./Components/NumbersGame/NumbersGame";
+import { NumbersOrdersGame } from "./Components/NumbersOrdersGame/NumbersOrdersGame";
 import { Main } from "./Components/Main/Main";
 export const App = () => {
   const [quanity, setQuanity] = useState(null);
@@ -25,6 +26,7 @@ export const App = () => {
         ></Route>
         <Route path="/Games" element={<Main />}></Route>
         <Route path="/Numbers" element={<NumbersGame />}></Route>
+        <Route path="/NumbersOrders" element={<NumbersOrdersGame/>}></Route>
       </Routes>
     </>
   );
