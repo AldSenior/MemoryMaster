@@ -1,7 +1,6 @@
 .MainBody{
     height: 80vh;
     width: 100vw;
-    background-color: #161616;
     display: flex;
     justify-content: center;
 }

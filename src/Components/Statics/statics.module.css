@@ -1,0 +1,78 @@
+.Statics {
+  display: flex;
+  flex-direction: row;
+  height: 92vh;
+  width: 92vw;
+  margin-top: 8vh;
+  margin-left: 8vw;
+}
+.LeftBlockStaticsWeek,
+.RightBlockStaticsWeek {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.Statics h1 {
+  font-family: RobotoNormal;
+  font-size: 32px;
+}
+.leftbottom {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.StaticsBar {
+  width: 100%;
+  height: 40%;
+  border: 1px solid black;
+}
+.staticGoal {
+  width: 49%;
+  height: 100%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.staticGoal {
+  img {
+    width: 48px;
+    height: 48px;
+  }
+}
+.topstaticGoal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.MyPerfom {
+  width: 100%;
+  height: 15%;
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.blockperf {
+  width: 32%;
+  height: 100%;
+  border: 1px solid blueviolet;
+}
+.staticsMobDan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 80%;
+  border: 2px solid black;
+  font-size: 24px;
+  background-color: #2e2e2e;
+}
