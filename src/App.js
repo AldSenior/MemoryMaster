@@ -8,6 +8,7 @@ import { Routes, Route } from "react-router-dom";
 import { NumbersGame } from "./Components/NumbersGame/NumbersGame";
 import { NumbersOrdersGame } from "./Components/NumbersOrdersGame/NumbersOrdersGame";
 import { Main } from "./Components/Main/Main";
+import { Statics } from "./Components/Statics/Statics";
 export const App = () => {
   const [quanity, setQuanity] = useState(null);
 
@@ -27,6 +28,7 @@ export const App = () => {
         <Route path="/Games" element={<Main />}></Route>
         <Route path="/Numbers" element={<NumbersGame />}></Route>
         <Route path="/NumbersOrders" element={<NumbersOrdersGame/>}></Route>
+        <Route path="/Statics" element={<Statics/>}></Route>
       </Routes>
     </>
   );

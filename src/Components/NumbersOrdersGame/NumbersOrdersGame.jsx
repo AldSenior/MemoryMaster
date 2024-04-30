@@ -3,18 +3,18 @@ import { colors } from "../../colors";
 import { useEffect, useState } from "react";
 import Timer from "../Timer/Timer";
 import { atom, useAtom } from "jotai";
-export const plusAtom = atom(false)
+export const plusAtom = atom(false);
 const orderAtom = atom(1);
 const selectAtom = atom(null);
 const Block = ({ i, setTime }) => {
   const [hid, setHid] = useState(false);
   const [order, setOrder] = useAtom(orderAtom);
   const [select, setSelect] = useAtom(selectAtom);
-  const [plus, setPlus] = useAtom(plusAtom)
+  const [plus, setPlus] = useAtom(plusAtom);
   const handleClick = () => {
     setSelect(i);
     setOrder(order);
-    setPlus(!plus)
+    setPlus(!plus);
     console.log(plus);
     if (order === i) {
       setHid(true);
@@ -45,10 +45,10 @@ export const NumbersOrdersGame = () => {
   const [order, setOrder] = useAtom(orderAtom);
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(true);
-  
   useEffect(() => {
     if (order === 26) {
       setIsRunning(false);
+      
     }
   }, [order]);
 
@@ -71,6 +71,9 @@ export const NumbersOrdersGame = () => {
     shuffledCards.sort(() => Math.random() - 0.5);
     setCards(shuffledCards);
   };
+  if (time === 0) {
+    setOrder(1)
+  }
   useEffect(() => {
     shuffleCards();
   }, []);
@@ -78,14 +81,17 @@ export const NumbersOrdersGame = () => {
   return (
     <div className={style["game"]}>
       <div className={style["timer"]}>
-        <p className={style["order"]}>Текущее число:{order}</p>
+        {order < 26 ? (
+          <p className={style["order"]}>Текущее число:{order}</p>
+        ) :  (
+          <p className={style["order"]}>Победа!</p>
+        )}
         {
           <Timer
             time={time}
             setTime={setTime}
             isRunning={isRunning}
             setIsRunning={setIsRunning}
-
           />
         }
       </div>

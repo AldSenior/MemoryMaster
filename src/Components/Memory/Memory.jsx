@@ -103,7 +103,7 @@ export const Memory = ({ difficult }) => {
             <button className={style["btn"]}>Настройки</button>
           </Link>
           <div className={style["turns"]}>
-            Шагов:{turns}{" "}
+            <p>Шагов:{turns}{" "}</p>
             <p>
               <Timer
                 time={time}

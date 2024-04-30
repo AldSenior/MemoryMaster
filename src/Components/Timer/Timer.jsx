@@ -33,7 +33,7 @@ const Timer = ({time, setTime, isRunning, setIsRunning}) => {
 
   return (
     <div className={style["timer"]}>
-      <h1 className={style["time"]}>Время:{(time / 1000).toFixed(2)} </h1>
+      <h1 className={style["time"]}>Время:{(time / 1000).toFixed(1)} </h1>
       {/* <div>
          <button onClick={startTimer}>Старт</button> 
         <button onClick={stopTimer}>Стоп</button>
