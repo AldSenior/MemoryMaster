@@ -1,25 +1,14 @@
 import { Link } from "react-router-dom";
 import style from "./settings.module.css";
 import { useState } from "react";
+import Cards from "../../Cards.json"
 
-const DIFF_NAMES = [
-  {
-    diff: "4x4",
-    kolvo: 8,
-  },
-  {
-    diff: "6x6",
-    kolvo: 18,
-  },
-  {
-    diff: "8x8",
-    kolvo: 32,
-  },
-];
 
-function Selectdiff({ level, selected, setQuanity, vis }) {
+
+function Selectdiff({ level, selected, setQuanity, vis, DIFF_NAMES }) {
   const handleClick = () => {
     setQuanity(DIFF_NAMES[level].kolvo);
+    console.log(DIFF_NAMES[level].kolvo);
   };
 
   const isSelected = selected === DIFF_NAMES[level].kolvo;
@@ -41,6 +30,7 @@ function Selectdiff({ level, selected, setQuanity, vis }) {
 export const SettingMemory = ({ setQuanity, quanity }) => {
     const [visibleRules,setVisibleRules] = useState(false)
     const [vis, setVis] = useState(false);
+    const DIFF_NAMES = Cards[0].DIFF_NAMES
   return (
     <ol className={style["settings"]}>
       <div className={style["Rules"]} style={{visibility: visibleRules ? "visible" : "hidden" }}>
@@ -87,6 +77,7 @@ export const SettingMemory = ({ setQuanity, quanity }) => {
               level={i}
               selected={quanity}
               setQuanity={setQuanity}
+              DIFF_NAMES={DIFF_NAMES}
             />
           );
         })}

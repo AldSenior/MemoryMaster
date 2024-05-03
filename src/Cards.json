@@ -1,17 +1,62 @@
 [
-    {
-        "title":"Найди пару",
-        "img":"../imgs/cardlogo.png",
-        "link":"/SettingMemory"
-    },
-    {
-        "title":"Последовательность цифр",
-        "img":"../imgs/cardNumber.jpg",
-        "link":"/Numbers"
-    },
-    {
-        "title":"Порядок чисел",
-        "img":"../imgs/logo_MemorOrderNumGame.jpg",
-        "link":"/NumbersOrders"
-    }
+  {
+    "title": "Найди пару",
+    "img": "../imgs/cardlogo.png",
+    "link": "/SettingMemory",
+    "gameLink":"/Memory",
+    "DIFF_NAMES": [
+      {
+        "diff": "4x4",
+        "kolvo": 8
+      },
+      {
+        "diff": "6x6",
+        "kolvo": 18
+      },
+      {
+        "diff": "8x8",
+        "kolvo": 32
+      }
+    ]
+  },
+  {
+    "title": "Последовательность цифр",
+    "img": "../imgs/cardNumber.jpg",
+    "link": "/SettingMemory",
+    "gameLink":"/Numbers",
+    "DIFF_NAMES": [
+      {
+        "diff": "пока нету",
+        "kolvo": 8
+      },
+      {
+        "diff": "ы",
+        "kolvo": 18
+      },
+      {
+        "diff": "ч",
+        "kolvo": 32
+      }
+    ]
+  },
+  {
+    "title": "Порядок чисел",
+    "img": "../imgs/logo_MemorOrderNumGame.jpg",
+    "link": "/SettingMemory",
+    "gameLink":"/NumbersOrders",
+    "DIFF_NAMES": [
+      {
+        "diff": "ячс",
+        "kolvo": 8
+      },
+      {
+        "diff": "ч",
+        "kolvo": 18
+      },
+      {
+        "diff": "ячс",
+        "kolvo": 32
+      }
+    ]
+  }
 ]
