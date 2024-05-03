@@ -9,7 +9,6 @@
 }
 .field{
     width: 640px;
-    height: 620px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

@@ -33,7 +33,7 @@ const NoAsnwer = () => {
   return <div className={style["kvadr"]}></div>;
 };
 
-export const NumbersGame = () => {
+export const NumbersGame = ({difficult}) => {
   const [NumberOrder, setNumberOrder] = useState(0);
   const [answer, setAnswer] = useState(3);
   const [kvadr, setKvadr] = useState([]);
@@ -41,7 +41,12 @@ export const NumbersGame = () => {
   const [noAccesAnswer, setNoAccesAnswer] = useState(0);
   const [select, setSelect] = useState(1);
   const timerRef = useRef("");
-  const [timer, setTimer] = useState(5);
+  const [timer, setTimer] = useState(difficult);
+  useEffect(() => {
+    if (performance.navigation.type == 1 && difficult == null) {
+      window.location.href = "/Games";
+    }
+  }, [difficult]);
   useEffect(() => {
     const timers = setTimeout(() => setTimer(timer - 1), 1000);
     if (timer == 0) {
@@ -56,14 +61,14 @@ export const NumbersGame = () => {
       setAnswer((prev) => prev + 1);
       setNumberOrder(0);
       setSelect(1);
-      setTimer(5);
+      setTimer(difficult);
       timerRef.current.style.visibility = "visible";
     }
     if (NumberOrder === answer + 1) {
       setAnswer((prev) => prev + 1);
       setNumberOrder(0);
       setSelect(1);
-      setTimer(5);
+      setTimer(difficult);
       timerRef.current.style.visibility = "visible";
     }
   }, [NumberOrder, answer]);

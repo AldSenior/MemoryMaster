@@ -39,20 +39,24 @@ const Block = ({ i, setTime }) => {
   );
 };
 
-export const NumbersOrdersGame = () => {
+export const NumbersOrdersGame = ({difficult}) => {
   const [cards, setCards] = useState([]);
   const [select, setSelect] = useAtom(selectAtom);
   const [order, setOrder] = useAtom(orderAtom);
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(true);
   useEffect(() => {
-    if (order === 26) {
+    if (order === difficult+1) {
       setIsRunning(false);
       
     }
   }, [order]);
-
-  const mass = Array(25)
+  useEffect(() => {
+    if (performance.navigation.type == 1 && difficult == null) {
+      window.location.href = "/Games";
+    }
+  }, [difficult]);
+  const mass = Array(difficult)
     .fill(0)
     .map((item, i) => {
       return (
@@ -77,11 +81,12 @@ export const NumbersOrdersGame = () => {
   useEffect(() => {
     shuffleCards();
   }, []);
-
+  const size = cards.length;
+  let cardSize = Math.sqrt(size) * 124;
   return (
     <div className={style["game"]}>
       <div className={style["timer"]}>
-        {order < 26 ? (
+        {order < difficult+1 ? (
           <p className={style["order"]}>Текущее число:{order}</p>
         ) :  (
           <p className={style["order"]}>Победа!</p>
@@ -95,7 +100,7 @@ export const NumbersOrdersGame = () => {
           />
         }
       </div>
-      <div className={style["field"]}>{cards}</div>
+      <div className={style["field"]} style={{width:cardSize}}>{cards}</div>
     </div>
   );
 };

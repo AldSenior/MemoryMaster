@@ -71,7 +71,7 @@ export const Memory = ({ difficult }) => {
   }, []);
   useEffect(() => {
     if (performance.navigation.type == 1 && difficult == null) {
-      window.location.href = "/SettingMemory";
+      window.location.href = "/Games";
     }
   }, [difficult]);
   useEffect(()=>{

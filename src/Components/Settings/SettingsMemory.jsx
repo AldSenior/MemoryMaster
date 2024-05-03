@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import style from "./settings.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Cards from "../../Cards.json"
 
 
@@ -27,33 +27,29 @@ function Selectdiff({ level, selected, setQuanity, vis, DIFF_NAMES }) {
   );
 }
 
-export const SettingMemory = ({ setQuanity, quanity }) => {
+export const SettingMemory = ({ setQuanity, quanity, DIFF_NAMES, gameindex }) => {
     const [visibleRules,setVisibleRules] = useState(false)
     const [vis, setVis] = useState(false);
-    const DIFF_NAMES = Cards[0].DIFF_NAMES
+
+    useEffect(() => {
+      if (performance.navigation.type == 1 && quanity == null) {
+        window.location.href = "/Games";
+      }
+    }, [quanity]);
+    
   return (
     <ol className={style["settings"]}>
       <div className={style["Rules"]} style={{visibility: visibleRules ? "visible" : "hidden" }}>
         <button className={style["btnrules"]} onClick={()=>{
             setVisibleRules(prev=>!prev)
         }}>Закрыть</button>
-        <h1>Правила игры "Найди пару"</h1>
+        <h1>Правила игры "{Cards[gameindex].title}"</h1>
         <p>
-          1. На столе лежит набор карточек, которые располагаются лицевой
-          стороной вниз.
-          <br />
-          2. Игрок открывает две любые карточки. Если изображения на них
-          совпадают, они остаются открытыми.
-          <br />
-          3. Если изображения не совпадают, карточки закрываются, и игрок
-          продолжает попытки.
-          <br />
-          4. Цель игры - открыть все пары карточек за минимальное количество
-          ходов.
+          {Cards[gameindex].GameRules}
         </p>
       </div>
       {quanity !== null ? (
-        <Link to="/MemoryGame">
+        <Link to={Cards[gameindex].gameLink}>
           <p className="setting">Start</p>
         </Link>
       ) : (

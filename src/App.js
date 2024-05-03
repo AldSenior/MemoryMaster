@@ -9,9 +9,11 @@ import { NumbersGame } from "./Components/NumbersGame/NumbersGame";
 import { NumbersOrdersGame } from "./Components/NumbersOrdersGame/NumbersOrdersGame";
 import { Main } from "./Components/Main/Main";
 import { Statics } from "./Components/Statics/Statics";
+import Cards from "./Cards.json";
 export const App = () => {
   const [quanity, setQuanity] = useState(null);
-
+  const [gameindex, setGameindex] = useState(0);
+  const DIFF_NAMES = Cards[gameindex].DIFF_NAMES;
   return (
     <>
       <Header />
@@ -19,16 +21,32 @@ export const App = () => {
         <Route path="/" element={<StartPage />}></Route>
         <Route
           path="/SettingMemory"
-          element={<SettingMemory setQuanity={setQuanity} quanity={quanity} />}
+          element={
+            <SettingMemory
+              setQuanity={setQuanity}
+              gameindex={gameindex}
+              quanity={quanity}
+              DIFF_NAMES={DIFF_NAMES}
+            />
+          }
         ></Route>
         <Route
           path="/MemoryGame"
           element={<Memory difficult={quanity} />}
         ></Route>
-        <Route path="/Games" element={<Main />}></Route>
-        <Route path="/Numbers" element={<NumbersGame />}></Route>
-        <Route path="/NumbersOrders" element={<NumbersOrdersGame/>}></Route>
-        <Route path="/Statics" element={<Statics/>}></Route>
+        <Route
+          path="/Games"
+          element={<Main setGameindex={setGameindex} />}
+        ></Route>
+        <Route
+          path="/Numbers"
+          element={<NumbersGame difficult={quanity} />}
+        ></Route>
+        <Route
+          path="/NumbersOrders"
+          element={<NumbersOrdersGame difficult={quanity} />}
+        ></Route>
+        <Route path="/Statics" element={<Statics />}></Route>
       </Routes>
     </>
   );
