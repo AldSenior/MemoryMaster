@@ -44,6 +44,11 @@ export const NumbersGame = ({difficult}) => {
   const [timer, setTimer] = useState(difficult);
   const [record, setRecord] = useState(localStorage.getItem("recordNumbers"))
   useEffect(() => {
+    if (performance.navigation.type == 1 && difficult === null) {
+      window.location.href = "/SettingMemory";
+    }
+  }, []);
+  useEffect(() => {
     const timers = setTimeout(() => setTimer(timer - 1), 1000);
     if (timer == 0) {
       clearTimeout(timers);

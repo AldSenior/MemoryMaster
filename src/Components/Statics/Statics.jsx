@@ -1,7 +1,7 @@
 import style from "./statics.module.css";
 import moment from "moment";
-import {Cards} from "../../Cards";
-import { useState, useEffect } from "react";
+import { Cards } from "../../Cards";
+import { useState, useEffect, useMemo } from "react";
 import { Records } from "../../Records";
 export const Statics = () => {
   const [timeOnSite, setTimeOnSite] = useState(
@@ -13,9 +13,11 @@ export const Statics = () => {
     setTimeOnSite(storedTimeOnSite);
   }, []);
 
-  const storedTimeOnSite = JSON.parse(localStorage.getItem("timeOnSite"));
-  const timeSite = storedTimeOnSite ? Math.floor(storedTimeOnSite) : 0;
-  const formattedTimeSite = moment.utc(timeSite).format("HH:mm:ss");
+  const formattedTimeSite = useMemo(() => {
+    const storedTimeOnSite = JSON.parse(localStorage.getItem("timeOnSite"));
+    const timeSite = storedTimeOnSite ? Math.floor(storedTimeOnSite) : 0;
+    return moment.utc(timeSite).format("HH:mm:ss");
+  }, [localStorage.getItem("timeOnSite")]);
 
   return (
     <div className={style["Statics"]}>
@@ -38,7 +40,6 @@ export const Statics = () => {
             <div className={style["staticsMobDan"]}>1 Days </div>
           </div>
         </div>
-        <h2>My Perfomance</h2>
         <div className={style["MyPerfom"]}>
           <div className={style["blockperf"]}>
             <div className={style["iconblock"]}>
@@ -71,9 +72,9 @@ export const Statics = () => {
               <div key={index} className={style["stored"]}>
                 <img src={item.img} alt="" />
                 <div className={style["recorde"]}>
-                <p>{item.title}</p>
-                <p>Рекорд:{Records[index].record}</p>
-                <p>Последняя активность:</p>
+                  <p>{item.title}</p>
+                  <p>Рекорд:{Records[index].record}</p>
+                  <p>Последняя активность:</p>
                 </div>
               </div>
             );

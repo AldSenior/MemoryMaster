@@ -25,7 +25,6 @@ export const App = () => {
     localStorage.setItem('timeOnSite', JSON.stringify(newTime));
   }, []);
 
-
   useEffect(() => {
     const startTime = Date.now() - timeOnSite;
     const timer = setInterval(() => {

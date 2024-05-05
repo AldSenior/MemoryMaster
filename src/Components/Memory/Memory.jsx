@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import SingleCard from "../SingleCard/SingleCard";
 import style from "./memory.module.css";
 import { colors } from "../../colors";
 import Timer from "../Timer/Timer";
 import { Link } from "react-router-dom";
+import  {memo} from "react"
 
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }
 shuffle(colors);
 
-export const Memory = ({ difficult }) => {
+export const Memory = memo(({ difficult }) => {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
   const [ChoiceOne, setChoiceOne] = useState(null);
@@ -27,17 +28,17 @@ export const Memory = ({ difficult }) => {
     });
 
   // перемешка карт
-  const shuffleCards = () => {
+  const shuffleCards = useCallback(() => {
     const shuffledCards = [...cardColors, ...cardColors]
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
     setCards(shuffledCards);
     setTurns(0);
-  };
-  //выбор
-  const handleChoice = (card) => {
+  }, [cardColors]);
+
+  const handleChoice = useCallback((card) => {
     ChoiceOne ? setChoiceTwo(card) : setChoiceOne(card);
-  };
+  }, [ChoiceOne]);
 
   useEffect(() => {
     if (ChoiceOne && ChoiceTwo) {
@@ -68,7 +69,7 @@ export const Memory = ({ difficult }) => {
   };
   useEffect(() => {
     if (performance.navigation.type == 1 && difficult === null) {
-      window.location.href = "/Games";
+      window.location.href = "/SettingMemory";
     }
   }, []);
   useEffect(() => {
@@ -136,6 +137,6 @@ export const Memory = ({ difficult }) => {
       </div>
     </>
   );
-};
+})
 
 export default Memory;

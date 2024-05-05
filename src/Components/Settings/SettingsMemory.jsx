@@ -30,11 +30,6 @@ function Selectdiff({ level, selected, setQuanity, vis, DIFF_NAMES }) {
 export const SettingMemory = ({ setQuanity, quanity, DIFF_NAMES, gameindex }) => {
     const [visibleRules,setVisibleRules] = useState(false)
     const [vis, setVis] = useState(false);
-
-    useEffect(() => {
-      if (performance.navigation.type == 1 && quanity == null) {
-      }
-    }, [quanity]);
     
   return (
     <ol className={style["settings"]}>

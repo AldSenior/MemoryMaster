@@ -2,8 +2,8 @@ import style from "./main.module.css";
 import { Card } from "../Card/Card";
 import {Cards} from "../../Cards";
 import { Link } from "react-router-dom";
-
-export const Main = ({setGameindex}) => {
+import {memo} from "react"
+export const Main = memo(({setGameindex}) => {
   return (
     <main className={style["MainBody"]}>
       <div className={style["cards"]}>
@@ -24,4 +24,4 @@ export const Main = ({setGameindex}) => {
       </div>
     </main>
   );
-};
+})

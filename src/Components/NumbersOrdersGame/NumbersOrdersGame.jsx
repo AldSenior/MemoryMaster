@@ -47,6 +47,11 @@ export const NumbersOrdersGame = ({difficult}) => {
   const [isRunning, setIsRunning] = useState(true);
   const [record, setRecord] = useState(localStorage.getItem("recordNumberOrder"))
   useEffect(() => {
+    if (performance.navigation.type == 1 && difficult === null) {
+      window.location.href = "/SettingMemory";
+    }
+  }, []);
+  useEffect(() => {
     if (order === difficult+1) {
       setIsRunning(false);
       if (record <= (time / 1000).toFixed(1) || record === null) {

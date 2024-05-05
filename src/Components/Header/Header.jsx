@@ -1,6 +1,6 @@
 import style from "./header.module.css";
 import { Link } from "react-router-dom";
-
+import {memo} from "react"
 const links = [
     {
         to: "/",
@@ -17,7 +17,7 @@ const links = [
 
 ];
 
-export const Header = () => {
+export const Header = memo(()=> {
     return (
         <header className={style["Header"]}>
             <div className={style["hea"]}>
@@ -36,4 +36,4 @@ export const Header = () => {
             </div>
         </header>
     );
-};
+})
