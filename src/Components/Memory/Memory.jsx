@@ -4,6 +4,7 @@ import style from "./memory.module.css";
 import { colors } from "../../colors";
 import Timer from "../Timer/Timer";
 import { Link } from "react-router-dom";
+
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }
@@ -18,7 +19,7 @@ export const Memory = ({ difficult }) => {
   const [answers, setAnswers] = useState(0);
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(true);
-
+  const [record, setRecord] = useState(localStorage.getItem("recordMemory"))
   const cardColors = Array(difficult)
     .fill(0)
     .map((item, index) => {
@@ -77,6 +78,12 @@ export const Memory = ({ difficult }) => {
   useEffect(()=>{
     if (answers === difficult) {
       setIsRunning(false)
+      console.log(record);
+      if (record <= (time / 1000).toFixed(1) || record === null) {
+        setRecord((time / 1000).toFixed(1))
+        localStorage.setItem("recordMemory",(time / 1000).toFixed(1))
+        console.log(record);
+      }
     }
   },[answers])
   const size = cards.length;

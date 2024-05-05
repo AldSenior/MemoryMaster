@@ -45,10 +45,14 @@ export const NumbersOrdersGame = ({difficult}) => {
   const [order, setOrder] = useAtom(orderAtom);
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(true);
+  const [record, setRecord] = useState(localStorage.getItem("recordNumberOrder"))
   useEffect(() => {
     if (order === difficult+1) {
       setIsRunning(false);
-      
+      if (record <= (time / 1000).toFixed(1) || record === null) {
+        setRecord((time / 1000).toFixed(1))
+        localStorage.setItem("recordNumberOrder",(time / 1000).toFixed(1))
+      }
     }
   }, [order]);
   useEffect(() => {

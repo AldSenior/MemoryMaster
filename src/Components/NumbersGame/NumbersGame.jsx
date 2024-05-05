@@ -42,6 +42,7 @@ export const NumbersGame = ({difficult}) => {
   const [select, setSelect] = useState(1);
   const timerRef = useRef("");
   const [timer, setTimer] = useState(difficult);
+  const [record, setRecord] = useState(localStorage.getItem("recordNumbers"))
   useEffect(() => {
     if (performance.navigation.type == 1 && difficult == null) {
       window.location.href = "/Games";
@@ -63,6 +64,10 @@ export const NumbersGame = ({difficult}) => {
       setSelect(1);
       setTimer(difficult);
       timerRef.current.style.visibility = "visible";
+      if (record <= accesAnswer|| record === null) {
+        setRecord(accesAnswer)
+        localStorage.setItem("recordNumbers",accesAnswer)
+      }
     }
     if (NumberOrder === answer + 1) {
       setAnswer((prev) => prev + 1);

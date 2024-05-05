@@ -2,7 +2,8 @@ import style from "./statics.module.css";
 import moment from "moment";
 import CardJSON from "../../Cards.json";
 import { useState, useEffect } from "react";
-
+import { Records } from "../../Records";
+console.log(Records);
 export const Statics = () => {
   const [timeOnSite, setTimeOnSite] = useState(
     JSON.parse(localStorage.getItem("timeOnSite"))
@@ -72,9 +73,7 @@ export const Statics = () => {
                 <img src={item.img} alt="" />
                 <div className={style["recorde"]}>
                 <p>{item.title}</p>
-                <p onClick={()=>{
-                  item.record+=1
-                }}>Рекорд:{item.record}</p>
+                <p>Рекорд:{Records[index].record}</p>
                 <p>Последняя активность:</p>
                 </div>
               </div>
