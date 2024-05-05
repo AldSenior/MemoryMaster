@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import style from "./settings.module.css";
 import { useState, useEffect } from "react";
-import Cards from "../../Cards.json"
+import {Cards} from "../../Cards"
 
 
 
@@ -33,7 +33,6 @@ export const SettingMemory = ({ setQuanity, quanity, DIFF_NAMES, gameindex }) =>
 
     useEffect(() => {
       if (performance.navigation.type == 1 && quanity == null) {
-        window.location.href = "/Games";
       }
     }, [quanity]);
     

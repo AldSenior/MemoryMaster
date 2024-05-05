@@ -55,11 +55,6 @@ export const NumbersOrdersGame = ({difficult}) => {
       }
     }
   }, [order]);
-  useEffect(() => {
-    if (performance.navigation.type == 1 && difficult == null) {
-      window.location.href = "/Games";
-    }
-  }, [difficult]);
   const mass = Array(difficult)
     .fill(0)
     .map((item, i) => {

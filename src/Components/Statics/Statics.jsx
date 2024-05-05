@@ -1,9 +1,8 @@
 import style from "./statics.module.css";
 import moment from "moment";
-import CardJSON from "../../Cards.json";
+import {Cards} from "../../Cards";
 import { useState, useEffect } from "react";
 import { Records } from "../../Records";
-console.log(Records);
 export const Statics = () => {
   const [timeOnSite, setTimeOnSite] = useState(
     JSON.parse(localStorage.getItem("timeOnSite"))
@@ -67,9 +66,9 @@ export const Statics = () => {
       <div className={style["RightBlockStaticsWeek"]}>
         <h1>Активность</h1>
         <div className={style["StoredActivity"]}>
-          {CardJSON.map((item, index) => {
+          {Cards.map((item, index) => {
             return (
-              <div className={style["stored"]}>
+              <div key={index} className={style["stored"]}>
                 <img src={item.img} alt="" />
                 <div className={style["recorde"]}>
                 <p>{item.title}</p>

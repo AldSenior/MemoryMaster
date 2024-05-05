@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
-import style from "./timer.module.css"
-import { plusAtom } from "../NumbersOrdersGame/NumbersOrdersGame";
+import React, { useEffect, useMemo } from "react";
+import style from "./timer.module.css";
 import { useAtom } from "jotai";
-const Timer = ({time, setTime, isRunning, setIsRunning}) => {
-  const plus = useAtom(plusAtom)
+import { plusAtom } from "../NumbersOrdersGame/NumbersOrdersGame";
+
+const Timer = React.memo(({ time, setTime, isRunning, setIsRunning }) => {
+  const plus = useAtom(plusAtom);
+
   useEffect(() => {
     let interval = null;
 
@@ -16,7 +18,7 @@ const Timer = ({time, setTime, isRunning, setIsRunning}) => {
     }
 
     return () => clearInterval(interval);
-  }, [isRunning]);
+  }, [isRunning, setTime]);
 
   const startTimer = () => {
     setIsRunning(true);
@@ -30,17 +32,13 @@ const Timer = ({time, setTime, isRunning, setIsRunning}) => {
     setTime(0);
     setIsRunning(false);
   };
+  const selfTime = useMemo(()=>(time / 1000).toFixed(1),[time])
 
   return (
     <div className={style["timer"]}>
-      <h1 className={style["time"]}>Время:{(time / 1000).toFixed(1)} </h1>
-      {/* <div>
-         <button onClick={startTimer}>Старт</button> 
-        <button onClick={stopTimer}>Стоп</button>
-        <button onClick={resetTimer}>Сбросить</button> 
-      </div> */}
+      <h1 className={style["time"]}>Время:{selfTime} </h1>
     </div>
   );
-};
+});
 
 export default Timer;

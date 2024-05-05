@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import "../src/App.css";
 import Memory from "./Components/Memory/Memory";
 import { StartPage } from "./Components/StartPage/StartPage";
@@ -9,25 +9,32 @@ import { NumbersGame } from "./Components/NumbersGame/NumbersGame";
 import { NumbersOrdersGame } from "./Components/NumbersOrdersGame/NumbersOrdersGame";
 import { Main } from "./Components/Main/Main";
 import { Statics } from "./Components/Statics/Statics";
-import Cards from "./Cards.json";
+import { Cards } from "./Cards";
+
 export const App = () => {
   const [quanity, setQuanity] = useState(null);
   const [gameindex, setGameindex] = useState(0);
-  const DIFF_NAMES = Cards[gameindex].DIFF_NAMES;
-  const [timeOnSite, setTimeOnSite] = useState(JSON.parse(localStorage.getItem("timeOnSite") || 0));
-  
-  
+  const DIFF_NAMES = useMemo(() => Cards[gameindex].DIFF_NAMES, [gameindex]);
+  const [timeOnSite, setTimeOnSite] = useState(() => {
+    const storedTime = JSON.parse(localStorage.getItem("timeOnSite")) || 0;
+    return storedTime;
+  });
+
+  const updateTimeOnSite = useCallback((newTime) => {
+    setTimeOnSite(newTime);
+    localStorage.setItem('timeOnSite', JSON.stringify(newTime));
+  }, []);
+
+
   useEffect(() => {
     const startTime = Date.now() - timeOnSite;
-  
-    const interval = setInterval(() => {
+    const timer = setInterval(() => {
       const newTime = Date.now() - startTime;
-      setTimeOnSite(newTime);
-      localStorage.setItem('timeOnSite', JSON.stringify(newTime));
+      updateTimeOnSite(newTime);
     }, 1000);
-  
-    return () => clearInterval(interval);
-  }, []);
+
+    return () => clearInterval(timer);
+  }, [timeOnSite, updateTimeOnSite]);
 
   return (
     <>
