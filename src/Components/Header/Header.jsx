@@ -7,13 +7,14 @@ const links = [
         title: "MemoryMaster",
     },
     {
+        to: "/Statics",
+        title: "Личный кабинет",
+    },
+    {
         to: "/Games",
         title: "Игры",
     },
-    {
-        to: "/Statics",
-        title: "Статистика",
-    },
+
 ];
 
 export const Header = () => {

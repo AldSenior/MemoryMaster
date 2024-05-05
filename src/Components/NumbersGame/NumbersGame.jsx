@@ -1,13 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 import style from "./numbergame.module.css";
 
-const Answer = ({ answerz, setNumberOrder, setSelect, disabled }) => {
+const Answer = ({ answerz, setNumberOrder, setSelect, disabled, difficult }) => {
   const [spanZIndex, setSpanZIndex] = useState(0);
 
   const time = () =>
     setTimeout(() => {
       setSpanZIndex(-1);
-    }, 5000);
+    }, difficult*1000);
   useEffect(() => {
     time();
   }, []);
@@ -91,6 +91,7 @@ export const NumbersGame = ({difficult}) => {
           setNumberOrder={setNumberOrder}
           answerz={index + 1}
           key={Math.random()}
+          difficult={difficult}
         />
       );
     });

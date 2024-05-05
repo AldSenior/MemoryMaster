@@ -4,13 +4,13 @@
   height: 92vh;
   width: 92vw;
   margin-top: 8vh;
-  margin-left: 8vw;
+  gap: 4%;
 }
 .LeftBlockStaticsWeek,
 .RightBlockStaticsWeek {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 45%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -32,6 +32,7 @@
   width: 100%;
   height: 40%;
   border: 1px solid black;
+  background-color: #363636;
 }
 .staticGoal {
   width: 49%;
@@ -41,6 +42,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #363636;
 }
 .staticGoal {
   img {
@@ -55,24 +57,83 @@
 }
 .MyPerfom {
   width: 100%;
-  height: 15%;
-  border: 1px solid blue;
+  height: 20%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 .blockperf {
-  width: 32%;
+  width: 30%;
   height: 100%;
-  border: 1px solid blueviolet;
+  background-color: #363636;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  p {
+    font-size: 20px;
+  }
 }
+
 .staticsMobDan {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 80%;
-  height: 80%;
-  border: 2px solid black;
+  height: 50%;
   font-size: 24px;
-  background-color: #2e2e2e;
+  background-color: #121212;
+}
+.OverviewOfMemoryGames {
+  width: 100%;
+  height: 90%;
+  background-color: #363636;
+}
+.iconblock {
+  border-radius: 8px;
+  width: 90%;
+  height: 50%;
+  background-color: #c2c2c2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 100px;
+    height: 100px;
+  }
+}
+.RightBlockStaticsWeek {
+  .StoredActivity {
+    width: 100%;
+    height: 40%;
+    background-color: #363636;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    .stored {
+      width: 100%;
+      height: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      gap: 32px;
+      
+      border-bottom: 1px solid #a7a7a7;
+      img {
+        width: 80px;
+        height: 80px;
+        margin-left: 30px;
+      }
+      .recorde {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        gap: 16px;
+      }
+    }
+  }
 }

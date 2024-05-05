@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, useEffect } from "react";
 import "../src/App.css";
 import Memory from "./Components/Memory/Memory";
 import { StartPage } from "./Components/StartPage/StartPage";
@@ -14,6 +14,21 @@ export const App = () => {
   const [quanity, setQuanity] = useState(null);
   const [gameindex, setGameindex] = useState(0);
   const DIFF_NAMES = Cards[gameindex].DIFF_NAMES;
+  const [timeOnSite, setTimeOnSite] = useState(JSON.parse(localStorage.getItem("timeOnSite") || 0));
+  
+  
+  useEffect(() => {
+    const startTime = Date.now() - timeOnSite;
+  
+    const interval = setInterval(() => {
+      const newTime = Date.now() - startTime;
+      setTimeOnSite(newTime);
+      localStorage.setItem('timeOnSite', JSON.stringify(newTime));
+    }, 1000);
+  
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       <Header />
