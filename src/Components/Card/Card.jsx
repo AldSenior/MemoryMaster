@@ -4,6 +4,7 @@ export const Card = ({img,title,desc, index, setGameindex}) => {
     return(
         <div className={style["card"]} onClick={()=>{
             setGameindex(index)
+            localStorage.setItem("gameindex",index)
         }}>
             <img className={style["cardImg"]} src={img} />
             <p className={style["title"]}><strong>{title}</strong></p>

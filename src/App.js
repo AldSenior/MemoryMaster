@@ -13,7 +13,7 @@ import { Cards } from "./Cards";
 
 export const App = () => {
   const [quanity, setQuanity] = useState(null);
-  const [gameindex, setGameindex] = useState(0);
+  const [gameindex, setGameindex] = useState(JSON.parse(localStorage.getItem("gameindex")) || 0);
   const DIFF_NAMES = useMemo(() => Cards[gameindex].DIFF_NAMES, [gameindex]);
   const [timeOnSite, setTimeOnSite] = useState(() => {
     const storedTime = JSON.parse(localStorage.getItem("timeOnSite")) || 0;
