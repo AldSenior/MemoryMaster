@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import style from "./numbergame.module.css";
+import { atom, useAtom } from "jotai";
 
 const Answer = ({ answerz, setNumberOrder, setSelect, disabled, difficult }) => {
   const [spanZIndex, setSpanZIndex] = useState(0);
@@ -32,12 +33,11 @@ const Answer = ({ answerz, setNumberOrder, setSelect, disabled, difficult }) => 
 const NoAsnwer = () => {
   return <div className={style["kvadr"]}></div>;
 };
-
 export const NumbersGame = ({difficult}) => {
   const [NumberOrder, setNumberOrder] = useState(0);
   const [answer, setAnswer] = useState(3);
   const [kvadr, setKvadr] = useState([]);
-  const [accesAnswer, setAccesAnswer] = useState(0);
+  const [accesAnswer, setAccesAnswer] = useState(1);
   const [noAccesAnswer, setNoAccesAnswer] = useState(0);
   const [select, setSelect] = useState(1);
   const timerRef = useRef("");
@@ -64,7 +64,7 @@ export const NumbersGame = ({difficult}) => {
       setSelect(1);
       setTimer(difficult);
       timerRef.current.style.visibility = "visible";
-      if (record <= accesAnswer|| record === null) {
+      if (record < accesAnswer || record === null) {
         setRecord(accesAnswer)
         localStorage.setItem("recordNumbers",accesAnswer)
       }
@@ -131,7 +131,7 @@ export const NumbersGame = ({difficult}) => {
       <p className={style["succes"]}>
         <span>
           <img className={style["galka"]} src="./imgs/galkaa.png"></img>
-          {accesAnswer}
+          {accesAnswer-1}
         </span>
         {"  "}
         <span>

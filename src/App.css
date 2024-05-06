@@ -1,16 +1,4 @@
-@import url("./Components/SingleCard/singleCard.module.css");
-@import url("./Components/Settings/settings.module.css");
-@import url("./Components/StartPage/startpage.module.css");
-@import url("./Components/Main/main.module.css");
-@import url("./Components/Card/card.module.css");
-@import url("./Components/Memory/memory.module.css");
-@import url("./Components/Statics/statics.module.css");
-@font-face {
-  font-family: "RalewayRegular";
-  src: url("../public/fonts/RalewayRegular.ttf") format("truetype");
-  font-style: normal;
-  font-weight: normal;
-}
+
 
 @font-face {
   font-family: 'RobotoNormal';
@@ -19,25 +7,17 @@
   font-style: normal;
 }
 @font-face {
-  font-family: 'RobotoLightItalic';
-  src: local('Roboto Light Italic'), local('Roboto-LightItalic'), url('../public/fonts/Robotolightitalic.woff2') format('woff2'), url('../public/fonts/Robotolightitalic.woff') format('woff'), url('../public/fonts/Robotolightitalic.ttf') format('truetype');
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
   font-family: 'Roboto Bold';
   src: local('Roboto Bold'), local('Roboto-Bold'), url('../public/fonts/Robotobold.woff2') format('woff2'), url('../public/fonts/Robotobold.woff') format('woff'), url('../public/fonts/Robotobold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
-  font-family: 'Roboto Bold Italic';
-  src: local('Roboto Bold Italic'), local('Roboto-BoldItalic'), url('../public/fonts/Robotobolditalic.woff2') format('woff2'), url('../public/fonts/Robotobolditalic.woff') format('woff'), url('../public/fonts/Robotobolditalic.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
+  font-family: "RalewayRegular";
+  src: url("../public/fonts/RalewayRegular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
 }
-
 @font-face {
   font-family: "RalewayBold";
   src: url("../public/fonts/RalewayRegular.ttf") format("truetype");

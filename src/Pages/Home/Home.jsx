@@ -1,9 +1,9 @@
-import style from "./main.module.css";
-import { Card } from "../Card/Card";
-import {Cards} from "../../Cards";
+import style from "./home.module.css";
+import { Cards } from "../../Cards";
+import {Card} from "../../Components/Card/Card"
 import { Link } from "react-router-dom";
 import {memo} from "react"
-export const Main = memo(({setGameindex}) => {
+export const Home = memo(({setGameindex}) => {
   return (
     <main className={style["MainBody"]}>
       <div className={style["cards"]}>

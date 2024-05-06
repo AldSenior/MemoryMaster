@@ -5,7 +5,7 @@ import {Cards} from "../../Cards"
 
 
 
-function Selectdiff({ level, selected, setQuanity, vis, DIFF_NAMES }) {
+function Selectdiff({ level, selected, setQuanity, DIFF_NAMES }) {
   const handleClick = () => {
     setQuanity(DIFF_NAMES[level].kolvo);
     console.log(DIFF_NAMES[level].kolvo);
@@ -15,7 +15,6 @@ function Selectdiff({ level, selected, setQuanity, vis, DIFF_NAMES }) {
 
   return (
     <li
-      style={{ visibility: vis ? "visible" : "hidden" }}
       key={Math.random()}
       className={`${style["difficult"]} ${
         isSelected ? style[`underline`] : ""
@@ -29,7 +28,6 @@ function Selectdiff({ level, selected, setQuanity, vis, DIFF_NAMES }) {
 
 export const SettingMemory = ({ setQuanity, quanity, DIFF_NAMES, gameindex }) => {
     const [visibleRules,setVisibleRules] = useState(false)
-    const [vis, setVis] = useState(false);
     
   return (
     <ol className={style["settings"]}>
@@ -44,25 +42,27 @@ export const SettingMemory = ({ setQuanity, quanity, DIFF_NAMES, gameindex }) =>
       </div>
       {quanity !== null ? (
         <Link to={Cards[gameindex].gameLink}>
-          <p className="setting">Start</p>
+          <p className={style["setting"]}>Начать</p>
         </Link>
       ) : (
-        <p className="setting">Start</p>
+        <p className={style["setting"]} onClick={()=>{
+          alert("Выберите уровень сложности")
+        }}>Начать</p>
       )}
       <p className={style["setting"]} onClick={() => {
         setVisibleRules(prev=>!prev)
       }}>
-        Rules
+        Правила
       </p>
-      <ul className={style["difficulty"]}>
-        <p className="setting" onClick={() => [setVis((prev) => !prev)]}>
-          Difficult
+      <ul className={style["difficultys"]}>
+        <p className={style["setting"]}>
+          Сложность
         </p>
         {DIFF_NAMES.map((item, i) => {
           return (
             <Selectdiff
-              vis={vis}
-              key={Math.random()}
+
+              key={i}
               quanity={quanity}
               level={i}
               selected={quanity}

@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useCallback } from "react";
 import style from "./timer.module.css";
 import { useAtom } from "jotai";
-import { plusAtom } from "../NumbersOrdersGame/NumbersOrdersGame";
+import { plusAtom } from "../../Games/NumbersOrdersGame/NumbersOrdersGame";
 import {memo} from "react"
 
 const Timer = memo(({ time, setTime, isRunning, setIsRunning }) => {

@@ -1,7 +1,7 @@
 import style from "./numbersOrdersGame.module.css";
 import { colors } from "../../colors";
 import { useEffect, useState } from "react";
-import Timer from "../Timer/Timer";
+import Timer from "../../Components/Timer/Timer";
 import { atom, useAtom } from "jotai";
 export const plusAtom = atom(false);
 const orderAtom = atom(1);

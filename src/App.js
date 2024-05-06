@@ -1,19 +1,21 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useMemo, useCallback, memo } from "react";
 import "../src/App.css";
-import Memory from "./Components/Memory/Memory";
-import { StartPage } from "./Components/StartPage/StartPage";
+import Memory from "./Games/Memory/Memory";
+import { StartPage } from "./Pages/StartPage/StartPage";
 import { Header } from "./Components/Header/Header";
-import { SettingMemory } from "./Components/Settings/SettingsMemory";
+import { SettingMemory } from "./Pages/Settings/SettingsMemory";
 import { Routes, Route } from "react-router-dom";
-import { NumbersGame } from "./Components/NumbersGame/NumbersGame";
-import { NumbersOrdersGame } from "./Components/NumbersOrdersGame/NumbersOrdersGame";
-import { Main } from "./Components/Main/Main";
-import { Statics } from "./Components/Statics/Statics";
+import { NumbersGame } from "./Games/NumbersGame/NumbersGame";
+import { NumbersOrdersGame } from "./Games/NumbersOrdersGame/NumbersOrdersGame";
+import { Home } from "./Pages/Home/Home";
+import { Statics } from "./Pages/Statics/Statics";
 import { Cards } from "./Cards";
 
-export const App = () => {
+export const App = memo(()=> {
   const [quanity, setQuanity] = useState(null);
-  const [gameindex, setGameindex] = useState(JSON.parse(localStorage.getItem("gameindex")) || 0);
+  const [gameindex, setGameindex] = useState(
+    JSON.parse(localStorage.getItem("gameindex")) || 0
+  );
   const DIFF_NAMES = useMemo(() => Cards[gameindex].DIFF_NAMES, [gameindex]);
   const [timeOnSite, setTimeOnSite] = useState(() => {
     const storedTime = JSON.parse(localStorage.getItem("timeOnSite")) || 0;
@@ -22,7 +24,7 @@ export const App = () => {
 
   const updateTimeOnSite = useCallback((newTime) => {
     setTimeOnSite(newTime);
-    localStorage.setItem('timeOnSite', JSON.stringify(newTime));
+    localStorage.setItem("timeOnSite", JSON.stringify(newTime));
   }, []);
 
   useEffect(() => {
@@ -57,7 +59,7 @@ export const App = () => {
         ></Route>
         <Route
           path="/Games"
-          element={<Main setGameindex={setGameindex} />}
+          element={<Home setGameindex={setGameindex} />}
         ></Route>
         <Route
           path="/Numbers"
@@ -71,5 +73,5 @@ export const App = () => {
       </Routes>
     </>
   );
-};
+});
 export default App;

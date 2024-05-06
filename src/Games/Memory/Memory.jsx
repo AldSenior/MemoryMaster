@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
-import SingleCard from "../SingleCard/SingleCard";
+import SingleCard from "../../Components/SingleCard/SingleCard";
 import style from "./memory.module.css";
 import { colors } from "../../colors";
-import Timer from "../Timer/Timer";
+import Timer from "../../Components/Timer/Timer";
 import { Link } from "react-router-dom";
 import  {memo} from "react"
 
