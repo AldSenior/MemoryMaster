@@ -74,7 +74,7 @@ export const Statics = () => {
                 <div className={style["recorde"]}>
                   <p>{item.title}</p>
                   <p>Рекорд:{Records[index].record}</p>
-                  <p>Последняя активность:</p>
+                  <p>Последняя активность:{item.currentDate}</p>
                 </div>
               </div>
             );
