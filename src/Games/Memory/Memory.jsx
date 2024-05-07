@@ -4,7 +4,7 @@ import style from "./memory.module.css";
 import { colors } from "../../colors";
 import Timer from "../../Components/Timer/Timer";
 import { Link } from "react-router-dom";
-import  {memo} from "react"
+import { memo } from "react";
 
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
@@ -36,9 +36,12 @@ export const Memory = memo(({ difficult }) => {
     setTurns(0);
   }, [cardColors]);
 
-  const handleChoice = useCallback((card) => {
-    ChoiceOne ? setChoiceTwo(card) : setChoiceOne(card);
-  }, [ChoiceOne]);
+  const handleChoice = useCallback(
+    (card) => {
+      ChoiceOne ? setChoiceTwo(card) : setChoiceOne(card);
+    },
+    [ChoiceOne]
+  );
 
   useEffect(() => {
     if (ChoiceOne && ChoiceTwo) {
@@ -137,6 +140,6 @@ export const Memory = memo(({ difficult }) => {
       </div>
     </>
   );
-})
+});
 
 export default Memory;
