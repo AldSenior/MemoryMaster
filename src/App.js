@@ -11,7 +11,7 @@ import { Home } from "./Pages/Home/Home";
 import { Statics } from "./Pages/Statics/Statics";
 import { Cards } from "./Cards";
 
-export const App = memo(()=> {
+export const App = memo(() => {
   const [quanity, setQuanity] = useState(null);
   const [gameindex, setGameindex] = useState(
     JSON.parse(localStorage.getItem("gameindex")) || 0

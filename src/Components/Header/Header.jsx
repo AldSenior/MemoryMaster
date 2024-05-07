@@ -28,7 +28,7 @@ export const Header = memo(()=> {
             {links.map((item, i) => {
                 return (
                     <Link key={i} to={item.to}>
-                        {item.img ? <img src={item.img}></img> : ""}
+                        {/* {item.img ? <img src={item.img}></img> : ""} */}
                         <p className="logo">{item.title}</p>
                     </Link>
                 );
