@@ -30,10 +30,11 @@ export const Memory = memo(({ difficult }) => {
 
     // перемешка карт
     const shuffleCards = useCallback(() => {
-        const shuffledCards = [...cardColors, ...cardColors].sort(() => Math.random() - 0.5).map((card) => ({ ...card, id: Math.random() }));
+        const shuffledCards = [...cardColors, ...cardColors].sort(() => Math.random() - 0.5).map((card) => ({ ...card }));
         setCards(shuffledCards);
         setTurns(0);
     }, [cardColors]);
+
     useEffect(() => {
         const currentdate = new Date();
         const datetime = currentdate.toLocaleString("ru-ru");
@@ -41,7 +42,8 @@ export const Memory = memo(({ difficult }) => {
             setCurrentDate(datetime);
             localStorage.setItem("timeCurrentDateMemoryGame", datetime);
         }, 1000);
-    }, [setCurrentDate]);
+    }, [currentDate]);
+
     const handleChoice = useCallback(
         (card) => {
             ChoiceOne ? setChoiceTwo(card) : setChoiceOne(card);

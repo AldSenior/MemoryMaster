@@ -28,7 +28,7 @@ const Answer = ({ answerz, setNumberOrder, setSelect, disabled, difficult }) => 
             setCurrentDate(datetime);
             localStorage.setItem("timeCurrentDateNumbersGame", datetime);
         }, 1000);
-    }, [setCurrentDate]);
+    }, [currentDate]);
     return (
         <button className={style["answer"]} onClick={handleClick} disabled={disabled}>
             <span style={{ zIndex: spanZIndex }}>{answerz}</span>

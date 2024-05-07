@@ -33,7 +33,7 @@ const Block = ({ i, setTime }) => {
             setCurrentDate(datetime);
             localStorage.setItem("timeCurrentDateNumbersOrderGame", datetime);
         }, 1000);
-    }, [setCurrentDate]);
+    }, [currentDate]);
 
     return (
         <div
