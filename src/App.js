@@ -10,7 +10,8 @@ import { NumbersOrdersGame } from "./Games/NumbersOrdersGame/NumbersOrdersGame";
 import { Home } from "./Pages/Home/Home";
 import { Statics } from "./Pages/Statics/Statics";
 import { Cards } from "./Cards";
-
+import { atom } from "jotai";
+export const atomStatickMassHistory = atom([])
 export const App = memo(() => {
   const [quanity, setQuanity] = useState(null);
   const [gameindex, setGameindex] = useState(

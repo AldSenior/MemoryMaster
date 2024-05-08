@@ -9,14 +9,13 @@ export const Home = memo(({setGameindex}) => {
       <div className={style["cards"]}>
         {Cards.map((item, index) => {
           return (
-            <Link key={index} to={Cards[index].link}>
-              {" "}
+            <Link key={index} to={item.link}>
               <Card
               key={index}
               setGameindex={setGameindex}
               index={index}
-                title={Cards[index].title}
-                img={Cards[index].img} /*desc={cardinfo[index].desc} */
+                title={item.title}
+                img={item.img}
               />
             </Link>
           );

@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useCallback } from "react";
 import style from "./timer.module.css";
 import { useAtom } from "jotai";
 import { plusAtom } from "../../Games/NumbersOrdersGame/NumbersOrdersGame";
-import {memo} from "react"
+import { memo } from "react";
 
 const Timer = memo(({ time, setTime, isRunning, setIsRunning }) => {
   const plus = useAtom(plusAtom);
@@ -24,16 +24,16 @@ const Timer = memo(({ time, setTime, isRunning, setIsRunning }) => {
   const startTimer = useCallback(() => {
     setIsRunning(true);
   }, [setIsRunning]);
-  
+
   const stopTimer = useCallback(() => {
     setIsRunning(false);
   }, [setIsRunning]);
-  
+
   const resetTimer = useCallback(() => {
     setTime(0);
     setIsRunning(false);
   }, [setTime, setIsRunning]);
-  const selfTime = useMemo(()=>(time / 1000).toFixed(1),[time])
+  const selfTime = (time / 1000).toFixed(1)
 
   return (
     <div className={style["timer"]}>

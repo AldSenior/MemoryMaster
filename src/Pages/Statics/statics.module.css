@@ -30,24 +30,37 @@
 }
 .StaticsBar {
   width: 100%;
-  height: 40%;
+  height: 65%;
   border: 1px solid black;
   background-color: #363636;
-}
-.staticGoal {
-  width: 49%;
-  height: 100%;
-  border: 1px solid black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #363636;
-}
-.staticGoal {
-  img {
-    width: 48px;
-    height: 48px;
+  overflow: auto;
+  .stored {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 32px;
+    
+    border-bottom: 1px solid #a7a7a7;
+    img {
+      width: 80px;
+      height: 80px;
+      margin-left: 30px;
+    }
+    .recorde {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+      .scored{
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+      }
+    }
   }
 }
 .topstaticGoal {
