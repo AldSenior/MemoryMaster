@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import Timer from "../../Components/Timer/Timer";
 import { atom, useAtom } from "jotai";
 import { atomStatickMassHistory } from "../../App";
-import { Cards } from "../../Cards";
+import { idHistoryGame } from "../../Pages/Statics/Statics";
 const img = "../imgs/logo_MemorOrderNumGame.jpg";
 const gameTitle = "Порядок чисел";
 export const plusAtom = atom(false);
@@ -15,7 +15,9 @@ const Block = ({ i, setTime }) => {
   const [order, setOrder] = useAtom(orderAtom);
   const [select, setSelect] = useAtom(selectAtom);
   const [plus, setPlus] = useAtom(plusAtom);
-  const [currentDate, setCurrentDate] = useState(localStorage.getItem("timeCurrentDateNumbersOrderGame"));
+  const [currentDate, setCurrentDate] = useState(
+    localStorage.getItem("timeCurrentDateNumbersOrderGame")
+  );
   const handleClick = () => {
     setSelect(i);
     setOrder(order);
@@ -34,10 +36,10 @@ const Block = ({ i, setTime }) => {
     const datetime = currentdate.toLocaleString("ru-ru");
 
     const interval = setInterval(() => {
-        setCurrentDate(datetime);
-        localStorage.setItem("timeCurrentDateNumbersOrderGame", datetime);
+      setCurrentDate(datetime);
+      localStorage.setItem("timeCurrentDateNumbersOrderGame", datetime);
     }, 1000);
-}, [currentDate]);
+  }, [currentDate]);
 
   return (
     <div
@@ -59,6 +61,7 @@ export const NumbersOrdersGame = ({ difficult }) => {
   const [order, setOrder] = useAtom(orderAtom);
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(true);
+  const [idHisGame, setIdHisGame] = useAtom(idHistoryGame)
   const [record, setRecord] = useState(
     localStorage.getItem("recordNumberOrder")
   );
@@ -68,15 +71,16 @@ export const NumbersOrdersGame = ({ difficult }) => {
   useEffect(() => {
     const currentdate = new Date();
     const datetime = currentdate.toLocaleString("ru-ru");
-  
+
     const historyCard = {
-      scored: order, 
+      scored: order,
       currentDate: datetime,
-      title: gameTitle ,
+      title: gameTitle,
       img,
-      id:StatickMassHistory.length+1
+      id:idHisGame
     };
-    const existingHistory = JSON.parse(localStorage.getItem("StatickMassHistory")) || [];
+    const existingHistory =
+      JSON.parse(localStorage.getItem("StatickMassHistory")) || [];
     const updatedHistory = [...existingHistory, historyCard];
     setStatickMassHistory(updatedHistory);
     localStorage.setItem("StatickMassHistory", JSON.stringify(updatedHistory));

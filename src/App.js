@@ -11,11 +11,9 @@ import { Home } from "./Pages/Home/Home";
 import { Statics } from "./Pages/Statics/Statics";
 import { Cards } from "./Cards";
 import { atom, useAtom } from "jotai";
-export const hrefAtom = atom(window.location.href);
 export const atomStatickMassHistory = atom([]);
 export const App = memo(() => {
   const [quanity, setQuanity] = useState(null);
-  const [CheckHrefAtom, setCheckHrefAtom] = useAtom(hrefAtom);
   const [gameindex, setGameindex] = useState(
     JSON.parse(localStorage.getItem("gameindex")) || 0
   );
@@ -27,7 +25,6 @@ export const App = memo(() => {
   const updateTimeOnSite = useCallback((newTime) => {
     setTimeOnSite(newTime);
     localStorage.setItem("timeOnSite", JSON.stringify(newTime));
-    setCheckHrefAtom(window.location.href);
   }, []);
 
   useEffect(() => {

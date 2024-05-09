@@ -3,31 +3,53 @@ import moment from "moment";
 import { Cards } from "../../Cards";
 import { useEffect, useMemo, useState } from "react";
 import { Records } from "../../Records";
-import { useAtom } from "jotai";
-import { hrefAtom } from "../../App";
+import { useAtom, atom } from "jotai";
+export const idHistoryGame = atom(
+  JSON.parse(localStorage.getItem("StatickMassHistory")?.length || 0)
+);
 export const Statics = () => {
-  const [CheckHrefWeb, setCheckHrefWeb] = useAtom(hrefAtom)
-  const [StatickMassHistory, setStatickMassHistory] = useState(JSON.parse(localStorage.getItem("StatickMassHistory")) || []);
+  console.log(JSON.parse(localStorage.getItem("StatickMassHistory")));
+  const [StatickMassHistory, setStatickMassHistory] = useState(
+    JSON.parse(localStorage.getItem("StatickMassHistory")) || []
+  );
+  useEffect(() => {
+    const uniqueHistory = StatickMassHistory.reduce((acc, current) => {
+      const existing = acc.find((item) => item.id === current.id);
+      if (!existing) {
+        acc.push(current);
+      } else {
+        if (current.scored > existing.scored) {
+          acc = acc.filter((item) => item.id !== current.id);
+          acc.push(current);
+        }
+      }
+      return acc;
+    }, []);
+
+    const sortedHistory = uniqueHistory.sort((a, b) => b.scored - a.scored);
+    setStatickMassHistory(sortedHistory);
+    localStorage.setItem("StatickMassHistory", JSON.stringify(sortedHistory));
+  }, []);
   const formattedTimeSite = useMemo(() => {
     const storedTimeOnSite = JSON.parse(localStorage.getItem("timeOnSite"));
     const timeSite = storedTimeOnSite ? Math.floor(storedTimeOnSite) : 0;
     return moment.utc(timeSite).format("HH:mm:ss");
   }, [localStorage.getItem("timeOnSite")]);
-  useEffect(()=>{
-    setCheckHrefWeb(window.location.href)
-  },[])
   return (
     <div className={style["Statics"]}>
       <div className={style["LeftBlockStaticsWeek"]}>
         <h1>История активности</h1>
         <div className={style["StaticsBar"]}>
-        {StatickMassHistory.map((item, index) => {
+          {StatickMassHistory.map((item, index) => {
             return (
               <div key={index} className={style["stored"]}>
                 <img src={item.img} alt="" />
                 <div className={style["recorde"]}>
                   <p>{item.title}</p>
-                  <p className={style["scored"]}><span>Очков:{item.scored}</span><span>Дата:{item.currentDate}</span></p>
+                  <p className={style["scored"]}>
+                    <span>Очков:{item.scored}</span>
+                    <span>Дата:{item.currentDate}</span>
+                  </p>
                 </div>
               </div>
             );
@@ -58,7 +80,7 @@ export const Statics = () => {
         </div>
       </div>
       <div className={style["RightBlockStaticsWeek"]}>
-        <h1>Активность</h1>
+        <h1>Рекорды</h1>
         <div className={style["StoredActivity"]}>
           {Cards.map((item, index) => {
             return (

@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import style from "./numbergame.module.css";
 import { useAtom } from "jotai";
-import { Cards } from "../../Cards";
+import { idHistoryGame } from "../../Pages/Statics/Statics";
 import { atomStatickMassHistory } from "../../App";
 const img = "../imgs/cardNumber.jpg";
 const gameTitle = "Последовательность цифр";
@@ -63,6 +63,7 @@ export const NumbersGame = ({ difficult }) => {
   const [select, setSelect] = useState(1);
   const timerRef = useRef("");
   const [timer, setTimer] = useState(difficult);
+  const [idHisGame, setIdHisGame] = useAtom(idHistoryGame)
   const [record, setRecord] = useState(localStorage.getItem("recordNumbers"));
   const [StatickMassHistory, setStatickMassHistory] = useAtom(
     atomStatickMassHistory
@@ -81,11 +82,9 @@ export const NumbersGame = ({ difficult }) => {
         currentDate: datetime,
         title: gameTitle,
         img,
+        id:idHisGame
     };
-
     const existingHistory = JSON.parse(localStorage.getItem("StatickMassHistory")) || [];
-    
-    // Keep only the latest historyCard with the highest accesAnswer
     const updatedHistory = [historyCard];
     existingHistory.forEach(item => {
         if (item.scored > historyCard.scored) {

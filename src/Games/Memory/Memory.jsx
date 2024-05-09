@@ -6,7 +6,7 @@ import Timer from "../../Components/Timer/Timer";
 import { Link } from "react-router-dom";
 import { atomStatickMassHistory } from "../../App";
 import { useAtom } from "jotai";
-import { Cards } from "../../Cards";
+import { idHistoryGame } from "../../Pages/Statics/Statics";
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }
@@ -14,8 +14,11 @@ const img = "../imgs/cardlogo.png";
 shuffle(colors);
 const gameTitle = "Найди пару";
 export const Memory = memo(({ difficult }) => {
-  const [currentDate, setCurrentDate] = useState(localStorage.getItem("timeCurrentDateMemoryGame") || "ещё не заходил");
+  const [currentDate, setCurrentDate] = useState(
+    localStorage.getItem("timeCurrentDateMemoryGame") || "ещё не заходил"
+  );
   const [cards, setCards] = useState([]);
+  const [idHisGame, setIdHisGame] = useAtom(idHistoryGame)
   const [turns, setTurns] = useState(0);
   const [ChoiceOne, setChoiceOne] = useState(null);
   const [ChoiceTwo, setChoiceTwo] = useState(null);
@@ -46,31 +49,29 @@ export const Memory = memo(({ difficult }) => {
     const currentdate = new Date();
     const datetime = currentdate.toLocaleString("ru-ru");
     const interval = setInterval(() => {
-        setCurrentDate(datetime);
-        localStorage.setItem("timeCurrentDateMemoryGame", datetime);
+      setCurrentDate(datetime);
+      localStorage.setItem("timeCurrentDateMemoryGame", datetime);
     }, 1000);
-}, [currentDate]);
+  }, [currentDate]);
 
   useEffect(() => {
     const currentdate = new Date();
     const datetime = currentdate.toLocaleString("ru-ru");
-  
+
     const historyCard = {
       scored: answers,
       currentDate: datetime,
-      title: gameTitle ,
+      title: gameTitle,
       img,
+      id:idHisGame
     };
-  
-    const existingHistory = JSON.parse(localStorage.getItem("StatickMassHistory")) || [];
-  
+    const existingHistory =
+      JSON.parse(localStorage.getItem("StatickMassHistory")) || [];
     const updatedHistory = [...existingHistory, historyCard];
 
     setStatickMassHistory(updatedHistory);
     localStorage.setItem("StatickMassHistory", JSON.stringify(updatedHistory));
   }, [answers, gameTitle]);
-
-
 
   const handleChoice = useCallback(
     (card) => {
