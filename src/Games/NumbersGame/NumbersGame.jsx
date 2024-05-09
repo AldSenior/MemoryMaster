@@ -65,7 +65,7 @@ export const NumbersGame = ({ difficult, gameindex }) => {
         const datetime = currentdate.toLocaleString("ru-ru");
 
         const historyCard = {
-            scored: accesAnswer,
+            scored: accesAnswer - 1,
             currentDate: datetime,
             title: Cards[gameindex].title,
             img: Cards[gameindex].img,
