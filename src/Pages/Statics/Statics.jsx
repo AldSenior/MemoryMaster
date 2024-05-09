@@ -1,19 +1,21 @@
 import style from "./statics.module.css";
 import moment from "moment";
 import { Cards } from "../../Cards";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Records } from "../../Records";
 import { useAtom } from "jotai";
-
+import { hrefAtom } from "../../App";
 export const Statics = () => {
-  const [StatickMassHistory, setStatickMassHistory] = useState(JSON.parse(localStorage.getItem("StatickMassHistory"))|| [])
-  console.log(StatickMassHistory);
+  const [CheckHrefWeb, setCheckHrefWeb] = useAtom(hrefAtom)
+  const [StatickMassHistory, setStatickMassHistory] = useState(JSON.parse(localStorage.getItem("StatickMassHistory")) || []);
   const formattedTimeSite = useMemo(() => {
     const storedTimeOnSite = JSON.parse(localStorage.getItem("timeOnSite"));
     const timeSite = storedTimeOnSite ? Math.floor(storedTimeOnSite) : 0;
     return moment.utc(timeSite).format("HH:mm:ss");
   }, [localStorage.getItem("timeOnSite")]);
-
+  useEffect(()=>{
+    setCheckHrefWeb(window.location.href)
+  },[])
   return (
     <div className={style["Statics"]}>
       <div className={style["LeftBlockStaticsWeek"]}>
@@ -51,7 +53,7 @@ export const Statics = () => {
               <img src="/imgs/complitedgalka.png" />
             </div>
             <h3>Всего играл</h3>
-            <p>3 раза</p>
+            <p>{StatickMassHistory.length}</p>
           </div>
         </div>
       </div>

@@ -73,7 +73,8 @@ export const NumbersOrdersGame = ({ difficult }) => {
       scored: order, 
       currentDate: datetime,
       title: gameTitle ,
-      img
+      img,
+      id:StatickMassHistory.length+1
     };
     const existingHistory = JSON.parse(localStorage.getItem("StatickMassHistory")) || [];
     const updatedHistory = [...existingHistory, historyCard];

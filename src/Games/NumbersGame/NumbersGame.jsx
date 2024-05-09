@@ -77,20 +77,25 @@ export const NumbersGame = ({ difficult }) => {
     const datetime = currentdate.toLocaleString("ru-ru");
 
     const historyCard = {
-      scored: accesAnswer,
-      currentDate: datetime,
-      title: gameTitle,
-      img:img
+        scored: accesAnswer,
+        currentDate: datetime,
+        title: gameTitle,
+        img,
     };
 
-    const existingHistory =
-      JSON.parse(localStorage.getItem("StatickMassHistory")) || [];
-
-    const updatedHistory = [...existingHistory, historyCard];
+    const existingHistory = JSON.parse(localStorage.getItem("StatickMassHistory")) || [];
+    
+    // Keep only the latest historyCard with the highest accesAnswer
+    const updatedHistory = [historyCard];
+    existingHistory.forEach(item => {
+        if (item.scored > historyCard.scored) {
+            updatedHistory.push(item);
+        }
+    });
 
     setStatickMassHistory(updatedHistory);
     localStorage.setItem("StatickMassHistory", JSON.stringify(updatedHistory));
-  }, [accesAnswer, gameTitle]);
+}, [accesAnswer, gameTitle]);
   useEffect(() => {
     if (NumberOrder === answer) {
       setAccesAnswer((prev) => prev + 1);

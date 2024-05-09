@@ -59,7 +59,7 @@ export const Memory = memo(({ difficult }) => {
       scored: answers,
       currentDate: datetime,
       title: gameTitle ,
-      img
+      img,
     };
   
     const existingHistory = JSON.parse(localStorage.getItem("StatickMassHistory")) || [];
