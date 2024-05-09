@@ -7,9 +7,9 @@ export const Cards = [
         activity: localStorage.getItem("timeOnMemory"),
         record: localStorage.getItem("recordMemory"),
         currentDate: localStorage.getItem("timeCurrentDateMemoryGame"),
-        GameRules:
+        gameRules:
             "1. На игровом поле лежит набор карточек, которые располагаются лицевой стороной вниз.  2. Игрок открывает две любые карточки. Если изображения на них совпадают, они остаются открытыми.  3. Если изображения не совпадают, карточки закрываются, и игрок продолжает попытки.  4. Цель игры - открыть все пары карточек за минимальное количество ходов.",
-        DIFF_NAMES: [
+        dificcult: [
             {
                 diff: "4x4",
                 kolvo: 8,
@@ -32,9 +32,9 @@ export const Cards = [
         currentDate: localStorage.getItem("timeCurrentDateNumbersGame"),
         gameLink: "/Numbers",
         activity: localStorage.getItem("timeOnNumberGame"),
-        GameRules:
+        gameRules:
             "1. На игровом поле лежат круги, на которых изображены числа. 2.Игрок должен нажать на карточки в последовательности увеличения чисел, для запоминания дают 5-3 секунд (зависит от уровня сложности). 3.Если игрок нажимает на них в правильной последовательности, то ему дают 1 балл, иначе засчитывает одну ошибку",
-        DIFF_NAMES: [
+        dificcult: [
             {
                 diff: "Лёгкий",
                 kolvo: 5,
@@ -57,9 +57,9 @@ export const Cards = [
         activity: localStorage.getItem("timeNumberOrderGame"),
         record: localStorage.getItem("recordNumberOrder"),
         currentDate: localStorage.getItem("timeCurrentDateNumbersOrderGame"),
-        GameRules:
+        gameRules:
             "1. На игровом поле расположены квадраты и числами, игроку надо нажать на них в правильной последовательности за минимальное время.Если игрок допускает ошибку, то к секундомеру добавляется 1 секунда",
-        DIFF_NAMES: [
+        dificcult: [
             {
                 diff: "4x4",
                 kolvo: 16,
