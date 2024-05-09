@@ -54,20 +54,23 @@ export const App = memo(() => {
           }
         ></Route>
         <Route
-          path="/MemoryGame"
-          element={<Memory difficult={quanity} />}
-        ></Route>
-        <Route
           path="/Games"
           element={<Home setGameindex={setGameindex} />}
         ></Route>
         <Route
+          path="/MemoryGame"
+          element={<Memory difficult={quanity} gameindex={gameindex} />}
+        ></Route>
+
+        <Route
           path="/Numbers"
-          element={<NumbersGame difficult={quanity} />}
+          element={<NumbersGame difficult={quanity} gameindex={gameindex} />}
         ></Route>
         <Route
           path="/NumbersOrders"
-          element={<NumbersOrdersGame difficult={quanity} />}
+          element={
+            <NumbersOrdersGame difficult={quanity} gameindex={gameindex} />
+          }
         ></Route>
         <Route path="/Statics" element={<Statics />}></Route>
       </Routes>

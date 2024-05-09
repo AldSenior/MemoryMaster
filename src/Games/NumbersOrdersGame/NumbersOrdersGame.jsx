@@ -5,8 +5,7 @@ import Timer from "../../Components/Timer/Timer";
 import { atom, useAtom } from "jotai";
 import { atomStatickMassHistory } from "../../App";
 import { idHistoryGame } from "../../Pages/Statics/Statics";
-const img = "../imgs/logo_MemorOrderNumGame.jpg";
-const gameTitle = "Порядок чисел";
+import { Cards } from "../../Cards";
 export const plusAtom = atom(false);
 const orderAtom = atom(1);
 const selectAtom = atom(null);
@@ -55,7 +54,7 @@ const Block = ({ i, setTime }) => {
   );
 };
 
-export const NumbersOrdersGame = ({ difficult }) => {
+export const NumbersOrdersGame = ({ difficult, gameindex }) => {
   const [cards, setCards] = useState([]);
   const [select, setSelect] = useAtom(selectAtom);
   const [order, setOrder] = useAtom(orderAtom);
@@ -75,8 +74,8 @@ export const NumbersOrdersGame = ({ difficult }) => {
     const historyCard = {
       scored: order,
       currentDate: datetime,
-      title: gameTitle,
-      img,
+      title: Cards[gameindex].title,
+      img:Cards[gameindex].img,
       id:idHisGame
     };
     const existingHistory =
@@ -84,10 +83,12 @@ export const NumbersOrdersGame = ({ difficult }) => {
     const updatedHistory = [...existingHistory, historyCard];
     setStatickMassHistory(updatedHistory);
     localStorage.setItem("StatickMassHistory", JSON.stringify(updatedHistory));
-  }, [order, gameTitle]);
+  }, [order]);
   useEffect(() => {
     if (performance.navigation.type == 1 && difficult === null) {
       window.location.href = "/SettingMemory";
+      const historyMinusBag =StatickMassHistory.pop()
+      setStatickMassHistory(historyMinusBag)
     }
   }, []);
   useEffect(() => {

@@ -27,14 +27,17 @@ export const Statics = () => {
     }, []);
 
     const sortedHistory = uniqueHistory.sort((a, b) => b.scored - a.scored);
-    setStatickMassHistory(sortedHistory);
-    localStorage.setItem("StatickMassHistory", JSON.stringify(sortedHistory));
+    const sortedHistoryByDate = sortedHistory.sort((a, b) => new Date(a.currentDate) - new Date(b.currentDate)).reverse()
+    setStatickMassHistory(sortedHistoryByDate);
+    localStorage.setItem("StatickMassHistory", JSON.stringify(sortedHistoryByDate));
   }, []);
   const formattedTimeSite = useMemo(() => {
     const storedTimeOnSite = JSON.parse(localStorage.getItem("timeOnSite"));
     const timeSite = storedTimeOnSite ? Math.floor(storedTimeOnSite) : 0;
     return moment.utc(timeSite).format("HH:mm:ss");
   }, [localStorage.getItem("timeOnSite")]);
+
+  
   return (
     <div className={style["Statics"]}>
       <div className={style["LeftBlockStaticsWeek"]}>

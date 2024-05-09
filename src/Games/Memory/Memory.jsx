@@ -7,18 +7,17 @@ import { Link } from "react-router-dom";
 import { atomStatickMassHistory } from "../../App";
 import { useAtom } from "jotai";
 import { idHistoryGame } from "../../Pages/Statics/Statics";
+import { Cards } from "../../Cards";
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }
-const img = "../imgs/cardlogo.png";
 shuffle(colors);
-const gameTitle = "Найди пару";
-export const Memory = memo(({ difficult }) => {
+export const Memory = memo(({ difficult, gameindex }) => {
   const [currentDate, setCurrentDate] = useState(
     localStorage.getItem("timeCurrentDateMemoryGame") || "ещё не заходил"
   );
   const [cards, setCards] = useState([]);
-  const [idHisGame, setIdHisGame] = useAtom(idHistoryGame)
+  const [idHisGame, setIdHisGame] = useAtom(idHistoryGame);
   const [turns, setTurns] = useState(0);
   const [ChoiceOne, setChoiceOne] = useState(null);
   const [ChoiceTwo, setChoiceTwo] = useState(null);
@@ -61,9 +60,9 @@ export const Memory = memo(({ difficult }) => {
     const historyCard = {
       scored: answers,
       currentDate: datetime,
-      title: gameTitle,
-      img,
-      id:idHisGame
+      title: Cards[gameindex].title,
+      img: Cards[gameindex].img,
+      id: idHisGame,
     };
     const existingHistory =
       JSON.parse(localStorage.getItem("StatickMassHistory")) || [];
@@ -71,7 +70,7 @@ export const Memory = memo(({ difficult }) => {
 
     setStatickMassHistory(updatedHistory);
     localStorage.setItem("StatickMassHistory", JSON.stringify(updatedHistory));
-  }, [answers, gameTitle]);
+  }, [answers]);
 
   const handleChoice = useCallback(
     (card) => {
@@ -110,8 +109,6 @@ export const Memory = memo(({ difficult }) => {
     if (performance.navigation.type == 1 && difficult === null) {
       window.location.href = "/SettingMemory";
     }
-  }, []);
-  useEffect(() => {
     shuffleCards();
   }, []);
   useEffect(() => {
@@ -171,7 +168,12 @@ export const Memory = memo(({ difficult }) => {
               disabled={disabled}
             />
           ))}
-          {answers === difficult && <div>Ты выиграл!</div>}
+          {answers === difficult && (
+            <div>
+              <p>Ты выиграл!</p>
+              <Link to="/Statics"><button className={style["btn"]}>В Личный кабинет</button></Link>
+            </div>
+          )}
         </div>
       </div>
     </>

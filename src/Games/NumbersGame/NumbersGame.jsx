@@ -3,8 +3,7 @@ import style from "./numbergame.module.css";
 import { useAtom } from "jotai";
 import { idHistoryGame } from "../../Pages/Statics/Statics";
 import { atomStatickMassHistory } from "../../App";
-const img = "../imgs/cardNumber.jpg";
-const gameTitle = "Последовательность цифр";
+import { Cards } from "../../Cards";
 const Answer = ({
   answerz,
   setNumberOrder,
@@ -54,7 +53,7 @@ const Answer = ({
 const NoAsnwer = () => {
   return <div className={style["kvadr"]}></div>;
 };
-export const NumbersGame = ({ difficult }) => {
+export const NumbersGame = ({ difficult , gameindex}) => {
   const [NumberOrder, setNumberOrder] = useState(0);
   const [answer, setAnswer] = useState(3);
   const [kvadr, setKvadr] = useState([]);
@@ -80,8 +79,8 @@ export const NumbersGame = ({ difficult }) => {
     const historyCard = {
         scored: accesAnswer,
         currentDate: datetime,
-        title: gameTitle,
-        img,
+        title: Cards[gameindex].title,
+        img:Cards[gameindex].img,
         id:idHisGame
     };
     const existingHistory = JSON.parse(localStorage.getItem("StatickMassHistory")) || [];
@@ -94,7 +93,7 @@ export const NumbersGame = ({ difficult }) => {
 
     setStatickMassHistory(updatedHistory);
     localStorage.setItem("StatickMassHistory", JSON.stringify(updatedHistory));
-}, [accesAnswer, gameTitle]);
+}, [accesAnswer]);
   useEffect(() => {
     if (NumberOrder === answer) {
       setAccesAnswer((prev) => prev + 1);
