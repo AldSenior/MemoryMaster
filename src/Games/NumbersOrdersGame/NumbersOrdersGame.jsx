@@ -75,7 +75,7 @@ export const NumbersOrdersGame = ({ difficult, gameindex }) => {
     const datetime = currentdate.toLocaleString("ru-ru");
 
     const historyCard = {
-      scored: order,
+      scored: `${(time/1000).toFixed(2)} сек`,
       currentDate: datetime,
       title: Cards[gameindex].title,
       img: Cards[gameindex].img,
@@ -86,7 +86,7 @@ export const NumbersOrdersGame = ({ difficult, gameindex }) => {
     const updatedHistory = [...existingHistory, historyCard];
     setStatickMassHistory(updatedHistory);
     localStorage.setItem("StatickMassHistory", JSON.stringify(updatedHistory));
-  }, [order]);
+  }, [time]);
   useEffect(() => {
     if (performance.navigation.type == 1 && difficult === null) {
       window.location.href = "/SettingMemory";
@@ -97,9 +97,9 @@ export const NumbersOrdersGame = ({ difficult, gameindex }) => {
   useEffect(() => {
     if (order === difficult + 1) {
       setIsRunning(false);
-      if (record <= (time / 1000).toFixed(1) || record === null) {
-        setRecord((time / 1000).toFixed(1));
-        localStorage.setItem("recordNumberOrder", (time / 1000).toFixed(1));
+      if (record <= time || record === null) {
+        setRecord(time);
+        localStorage.setItem("recordNumberOrder", `${time} сек`);
       }
     }
   }, [order]);

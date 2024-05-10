@@ -12,6 +12,7 @@ import { Button } from "@gravity-ui/uikit";
 import { Icon } from "@gravity-ui/uikit";
 import { Gear } from "@gravity-ui/icons";
 import { ArrowsRotateLeft } from "@gravity-ui/icons";
+import { Person } from "@gravity-ui/icons";
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }
@@ -55,14 +56,14 @@ export const Memory = memo(({ difficult, gameindex }) => {
       setCurrentDate(datetime);
       localStorage.setItem("timeCurrentDateMemoryGame", datetime);
     }, 1000);
-  }, [currentDate]);
+  }, [time]);
 
   useEffect(() => {
     const currentdate = new Date();
     const datetime = currentdate.toLocaleString("ru-ru");
 
     const historyCard = {
-      scored: answers,
+      scored: `${(time/1000).toFixed(2)} сек`,
       currentDate: datetime,
       title: Cards[gameindex].title,
       img: Cards[gameindex].img,
@@ -74,7 +75,7 @@ export const Memory = memo(({ difficult, gameindex }) => {
 
     setStatickMassHistory(updatedHistory);
     localStorage.setItem("StatickMassHistory", JSON.stringify(updatedHistory));
-  }, [answers]);
+  }, [currentDate]);
 
   const handleChoice = useCallback(
     (card) => {
@@ -82,7 +83,6 @@ export const Memory = memo(({ difficult, gameindex }) => {
     },
     [ChoiceOne]
   );
-
   useEffect(() => {
     if (ChoiceOne && ChoiceTwo) {
       setDisabled(true);
@@ -118,9 +118,9 @@ export const Memory = memo(({ difficult, gameindex }) => {
   useEffect(() => {
     if (answers === difficult) {
       setIsRunning(false);
-      if (record <= (time / 1000).toFixed(1) || record === null) {
-        setRecord((time / 1000).toFixed(1));
-        localStorage.setItem("recordMemory", (time / 1000).toFixed(1));
+      if (record <= time || record === null) {
+        setRecord(time);
+        localStorage.setItem("recordMemory", `${time} сек`);
       }
     }
   }, [answers]);
@@ -129,46 +129,44 @@ export const Memory = memo(({ difficult, gameindex }) => {
 
   return (
     <>
-            <div className={style["buttons"]}>
-          <div className={style["buttons"]}>
-            <Link to="/SettingMemory">
-              <Button view="outlined" size="l" className="btn-grabity">
-                <Icon data={Gear} size={18} />
-                Настройки
-              </Button>
-            </Link>
-            <Button
-              className="btn-grabity"
-              view="outlined"
-              size="l"
-              onClick={() => {
-                setChoiceTwo(null);
-                setChoiceOne(null);
-                shuffleCards();
-                setAnswers(0);
-                setTime(0);
-              }}
-            >
-              <Icon data={ArrowsRotateLeft} size={18} />
-              Рестарт
+      <div className={style["buttons"]}>
+        <div className={style["buttons"]}>
+          <Link to="/SettingMemory">
+            <Button view="outlined" size="l" className="btn-grabity">
+              <Icon data={Gear} size={18} />
+              Настройки
             </Button>
-          </div>
+          </Link>
+          <Button
+            className="btn-grabity"
+            view="outlined"
+            size="l"
+            onClick={() => {
+              setChoiceTwo(null);
+              setChoiceOne(null);
+              shuffleCards();
+              setAnswers(0);
+              setTime(0);
+            }}
+          >
+            <Icon data={ArrowsRotateLeft} size={18} />
+            Рестарт
+          </Button>
+        </div>
 
-          <div className={style["turns"]}>
-            <p>Шагов:{turns} </p>
-            <div className={style["timer"]}>
-              <Timer
-                time={time}
-                setTime={setTime}
-                isRunning={isRunning}
-                setIsRunning={setIsRunning}
-              />
-            </div>
+        <div className={style["turns"]}>
+          <p>Шагов:{turns} </p>
+          <div className={style["timer"]}>
+            <Timer
+              time={time}
+              setTime={setTime}
+              isRunning={isRunning}
+              setIsRunning={setIsRunning}
+            />
           </div>
         </div>
+      </div>
       <div className={style["Game"]}>
-
-
         <div className={style["field"]} style={{ width: `${cardSize}px` }}>
           {cards.map((card) => (
             <SingleCard
@@ -182,10 +180,12 @@ export const Memory = memo(({ difficult, gameindex }) => {
             />
           ))}
           {answers === difficult && (
-            <div>
-              <p>Ты выиграл!</p>
+            <div className={style["win"]}>
+              <p>Победа!</p>
               <Link to="/Statics">
-                <button className={style["btn"]}>В Личный кабинет</button>
+                <Button view="outlined" size="l">
+                  <Icon data={Person} size={18} />В личный кабинет
+                </Button>
               </Link>
             </div>
           )}

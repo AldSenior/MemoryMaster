@@ -101,3 +101,14 @@ a {
   background-image: url("../../../public/imgs/cardMem.jpg");
   background-size: cover;
 }
+.win{
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  button {
+    --g-button-background-color: #2e2e2e;
+    --g-button-background-color-hover: #201f1f;
+    --g-button-border-radius: 10px;
+  }
+}
