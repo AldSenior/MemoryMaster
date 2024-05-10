@@ -1,66 +1,77 @@
 .game {
-    margin-top: 50px;
-    width: 100vw;
-    height: 92vh;
+  margin-top: 50px;
+  width: 100vw;
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #161616;
+  align-items: center;
+  justify-content: center;
+  .buttons{
     display: flex;
-    flex-direction: column;
-    background-color: #161616;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
+    flex-direction: row;
+    gap: 24px;
+  }
+  gap: 12px;
+  button {
+    --g-button-background-color: #2e2e2e;
+    --g-button-background-color-hover: #201f1f;
+    --g-button-border-radius: 10px;
+  }
 }
 .field {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 900px;
-    height: 900px;
-    background-image: url("../../../public/imgs/NGfone.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 900px;
+  height: 900px;
+  background-image: url("../../../public/imgs/NGfone.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
 }
 .kvadr {
-    width: 150px;
-    height: 150px;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .answer {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url("../../../public/imgs/cardNumber.jpg");
-    background-size: cover;
-    font-size: 24px;
-    border: none;
-    font-weight: 900;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../../../public/imgs/cardNumber.jpg");
+  background-size: cover;
+  font-size: 24px;
+  border: none;
+  font-weight: 900;
 }
 
-.krest, .galka{
-    width: 24px;
-    height: 24px;
+.krest,
+.galka {
+  width: 24px;
+  height: 24px;
 }
-span{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+span {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
-.succes{
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
+.succes {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
 }
-.timer{
-    font-size: 128px;
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    visibility: visible;
+.timer {
+  font-size: 128px;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  visibility: visible;
 }

@@ -1,11 +1,21 @@
 .game{
     width: 100vw;
     height: 100vh;
-    background-color: #242426;
+    background-color: #141416;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    .buttons{
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        button {
+            --g-button-background-color: #2e2e2e;
+            --g-button-background-color-hover: #201f1f;
+            --g-button-border-radius: 10px;
+          }
+    }
 }
 .field{
     width: 640px;

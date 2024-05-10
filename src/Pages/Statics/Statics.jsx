@@ -4,6 +4,7 @@ import { Cards } from "../../Cards";
 import { useEffect, useMemo, useState } from "react";
 import { Records } from "../../Records";
 import { useAtom, atom } from "jotai";
+import { TimeOnSite } from "../../Components/TimeOnSite";
 export const idHistoryGame = atom(JSON.parse(localStorage.getItem("StatickMassHistory")?.length || 0));
 export const Statics = () => {
     const [StatickMassHistory, setStatickMassHistory] = useState(JSON.parse(localStorage.getItem("StatickMassHistory")) || []);
@@ -26,11 +27,11 @@ export const Statics = () => {
         setStatickMassHistory(sortedHistoryByDate);
         localStorage.setItem("StatickMassHistory", JSON.stringify(sortedHistoryByDate));
     }, []);
-    const formattedTimeSite = useMemo(() => {
-        const storedTimeOnSite = JSON.parse(localStorage.getItem("timeOnSite"));
-        const timeSite = storedTimeOnSite ? Math.floor(storedTimeOnSite) : 0;
-        return moment.utc(timeSite).format("HH:mm:ss");
-    }, [localStorage.getItem("timeOnSite")]);
+    // const formattedTimeSite = useMemo(() => {
+    //     const storedTimeOnSite = JSON.parse(localStorage.getItem("timeOnSite"));
+    //     const timeSite = storedTimeOnSite ? Math.floor(storedTimeOnSite) : 0;
+    //     return moment.utc(timeSite).format("HH:mm:ss");
+    // }, [localStorage.getItem("timeOnSite")]);
 
     return (
         <div className={style["Statics"]}>
@@ -58,7 +59,7 @@ export const Statics = () => {
                             <img src="/imgs/book.png" />
                         </div>
                         <h3>Всего времени на сайте</h3>
-                        <p>{formattedTimeSite}</p>
+                        <TimeOnSite/>
                     </div>
                     <div className={style["blockperf"]}>
                         <div className={style["iconblock"]}>

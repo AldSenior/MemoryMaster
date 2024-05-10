@@ -1,94 +1,103 @@
 .navigation {
-    width: 100%;
-    height: 100px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
-*{
-    font-variant-numeric: lining-nums;
+* {
+  font-variant-numeric: lining-nums;
 }
 
 .Game {
-    position: relative;
-    width: 100vw;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  position: relative;
+  width: 500px;
+  height: 88vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
 }
 
 .field {
-    display: flex;
-    box-sizing: border-box;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
 }
-.buttons{
+.buttons {
+  position: relative;
+  top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  left: 20px;
+  height: 50px;
+  width: 500px;
+  align-items: center;
+  justify-content: left;
+  button {
+    --g-button-background-color: #2e2e2e;
+    --g-button-background-color-hover: #201f1f;
+    --g-button-border-radius: 10px;
+  }
+  .turns {
     display: flex;
     flex-direction: row;
-    gap: 16px;
-    width: 400px;
     align-items: center;
-    justify-content: left;
-}
-.btn {
-    background-color: black;
-    width: 90px;
-    height: 40px;
-    border-radius: 5px;
+    justify-content: center;
+    height: 50px;
+    gap: 32px;
+    position: absolute;
+    left: 320px;
+    top: 20px;
+  }
 }
 .card {
-    position: relative;
-    width: 100px;
-    height: 150px;
+  position: relative;
+  width: 100px;
+  height: 100px;
 }
 .card,
 .back,
 .front {
-    border-radius: 15px;
+  border-radius: 15px;
 }
 .card .front {
-    transform: rotateY(90deg);
-    transition: all ease-in 0.2s;
-    position: absolute;
-    width: 100px;
-    height: 150px;
+  transform: rotateY(90deg);
+  transition: all ease-in 0.2s;
+  position: absolute;
+  width: 100px;
+  height: 100px;
 }
 .flipped .front {
-    transform: rotateY(0deg);
-    transition-delay: 0.2s;
-    width: 100px;
-    height: 150px;
+  transform: rotateY(0deg);
+  transition-delay: 0.2s;
+  width: 100px;
+  height: 100px;
 }
 
 .card .back {
-    height: 150px;
-    width: 100px;
-    transition: all ease-in 0.2s;
-    transition-delay: 0.2s;
+  height: 100px;
+  width: 100px;
+  transition: all ease-in 0.2s;
+  transition-delay: 0.2s;
 }
 .flipped .back {
-    transform: rotateY(90deg);
-    transition-delay: 0s;
+  transform: rotateY(90deg);
+  transition-delay: 0s;
 }
 .back {
-    background-color: red;
-    background-image: url("../../../public/imgs/cardMem.jpg");
-    background-size: cover;
-}
-.turns{
-    font-size: 16px;
-    display: flex;
-    flex-direction: row;
-    gap: 32px;
+  background-color: red;
+  background-image: url("../../../public/imgs/cardMem.jpg");
+  background-size: cover;
 }
