@@ -82,7 +82,7 @@ export const NumbersOrdersGame = ({ difficult, gameindex }) => {
       id: idHisGame,
       diff:difficult?.diff
     };
-    if (difficult?.diff) {
+    if (difficult?.diff ) {
       const existingHistory =
       JSON.parse(localStorage.getItem("StatickMassHistory")) || [];
     const updatedHistory = [...existingHistory, historyCard];
@@ -95,8 +95,6 @@ export const NumbersOrdersGame = ({ difficult, gameindex }) => {
     console.log(difficult);
     if (performance.navigation.type == 1 && difficult === null) {
       window.location.href = "/SettingMemory";
-      const historyMinusBag = StatickMassHistory.pop();
-      setStatickMassHistory(historyMinusBag);
     }
   }, []);
   useEffect(() => {

@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import  { useEffect, useState } from "react";
 
 export const DayStreakCounter = () => {
-  const [streak, setStreak] = React.useState(0);
-
+  const [streak, setStreak] = useState(localStorage.getItem("streak") || 1);
   const getCurrentDate = () => {
     const today = new Date();
     const year = today.getFullYear();

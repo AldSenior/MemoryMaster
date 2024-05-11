@@ -12,13 +12,14 @@ export const Statics = () => {
   const [StatickMassHistory, setStatickMassHistory] = useState(
     JSON.parse(localStorage.getItem("StatickMassHistory")) || []
   );
+
   useEffect(() => {
     const uniqueHistory = StatickMassHistory.reduce((acc, current) => {
       const existing = acc.find((item) => item.id === current.id);
       if (!existing) {
         acc.push(current);
       } else {
-        if (current.scored > existing.scored) {
+        if (parseFloat(current.scored) > parseFloat(existing.scored)) {
           acc = acc.filter((item) => item.id !== current.id);
           acc.push(current);
         }
@@ -26,16 +27,16 @@ export const Statics = () => {
       return acc;
     }, []);
 
-    const sortedHistory = uniqueHistory.sort((a, b) => b.scored - a.scored);
-    const sortedHistoryByDate = sortedHistory
+    const sortedHistoryByDate = uniqueHistory
       .sort((a, b) => new Date(a.currentDate) - new Date(b.currentDate))
       .reverse();
+
     setStatickMassHistory(sortedHistoryByDate);
     localStorage.setItem(
       "StatickMassHistory",
       JSON.stringify(sortedHistoryByDate)
     );
-  }, []);
+  }, [StatickMassHistory]);
   return (
     <div className={style["Statics"]}>
       <div className={style["LeftBlockStaticsWeek"]}>
@@ -69,7 +70,7 @@ export const Statics = () => {
             <div className={style["iconblock"]}>
               <img src="/imgs/star.svg" />
             </div>
-            <DayStreakCounter/>
+            <DayStreakCounter />
           </div>
           <div className={style["blockperf"]}>
             <div className={style["iconblock"]}>
