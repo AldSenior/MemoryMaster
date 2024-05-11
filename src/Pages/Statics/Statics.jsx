@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Records } from "../../Records";
 import { atom } from "jotai";
 import { TimeOnSite } from "../../Components/TimeOnSite";
+import { DayStreakCounter } from "../../DayStreakCounter";
 export const idHistoryGame = atom(
   JSON.parse(localStorage.getItem("StatickMassHistory")?.length || 0)
 );
@@ -49,6 +50,7 @@ export const Statics = () => {
                   <p className={style["scored"]}>
                     <span>{item.scored}</span>
                     <span>{item.currentDate}</span>
+                    <span>{item.diff}</span>
                   </p>
                 </div>
               </div>
@@ -67,8 +69,7 @@ export const Statics = () => {
             <div className={style["iconblock"]}>
               <img src="/imgs/star.svg" />
             </div>
-            <h3>Streak</h3>
-            <p>1</p>
+            <DayStreakCounter/>
           </div>
           <div className={style["blockperf"]}>
             <div className={style["iconblock"]}>

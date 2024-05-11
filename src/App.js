@@ -42,6 +42,7 @@ export const App = memo(() => {
               gameindex={gameindex}
               quanity={quanity}
               DIFF_NAMES={DIFF_NAMES}
+              nameDiffCard={DIFF_NAMES}
             />
           }
         ></Route>

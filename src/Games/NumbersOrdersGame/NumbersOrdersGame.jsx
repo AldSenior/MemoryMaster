@@ -80,14 +80,19 @@ export const NumbersOrdersGame = ({ difficult, gameindex }) => {
       title: Cards[gameindex].title,
       img: Cards[gameindex].img,
       id: idHisGame,
+      diff:difficult?.diff
     };
-    const existingHistory =
+    if (difficult?.diff) {
+      const existingHistory =
       JSON.parse(localStorage.getItem("StatickMassHistory")) || [];
     const updatedHistory = [...existingHistory, historyCard];
+
     setStatickMassHistory(updatedHistory);
     localStorage.setItem("StatickMassHistory", JSON.stringify(updatedHistory));
+    }
   }, [time]);
   useEffect(() => {
+    console.log(difficult);
     if (performance.navigation.type == 1 && difficult === null) {
       window.location.href = "/SettingMemory";
       const historyMinusBag = StatickMassHistory.pop();
@@ -95,15 +100,15 @@ export const NumbersOrdersGame = ({ difficult, gameindex }) => {
     }
   }, []);
   useEffect(() => {
-    if (order === difficult + 1) {
+    if (order === difficult?.kolvo + 1) {
       setIsRunning(false);
       if (record <= time || record === null) {
         setRecord(time);
-        localStorage.setItem("recordNumberOrder", `${time} сек`);
+        localStorage.setItem("recordNumberOrder", `${(time/1000).toFixed(2)} сек`);
       }
     }
   }, [order]);
-  const mass = Array(difficult)
+  const mass = Array(difficult?.kolvo)
     .fill(0)
     .map((item, i) => {
       return (
@@ -159,7 +164,7 @@ export const NumbersOrdersGame = ({ difficult, gameindex }) => {
         </Button>
       </div>
       <div className={style["timer"]}>
-        {order < difficult + 1 ? (
+        {order < difficult?.kolvo + 1 ? (
           <p className={style["order"]}>Текущее число:{order}</p>
         ) : (
           <p className={style["order"]}>Победа!</p>

@@ -34,7 +34,7 @@ export const Memory = memo(({ difficult, gameindex }) => {
   const [StatickMassHistory, setStatickMassHistory] = useAtom(
     atomStatickMassHistory
   );
-  const cardColors = Array(difficult)
+  const cardColors = Array(difficult?.kolvo)
     .fill(0)
     .map((item, index) => {
       return { src: colors[index], matched: false };
@@ -68,14 +68,17 @@ export const Memory = memo(({ difficult, gameindex }) => {
       title: Cards[gameindex].title,
       img: Cards[gameindex].img,
       id: idHisGame,
+      diff:difficult?.diff
     };
-    const existingHistory =
+    if (difficult?.diff) {
+      const existingHistory =
       JSON.parse(localStorage.getItem("StatickMassHistory")) || [];
     const updatedHistory = [...existingHistory, historyCard];
 
     setStatickMassHistory(updatedHistory);
     localStorage.setItem("StatickMassHistory", JSON.stringify(updatedHistory));
-  }, [currentDate]);
+    }
+  }, [time]);
 
   const handleChoice = useCallback(
     (card) => {
@@ -110,17 +113,17 @@ export const Memory = memo(({ difficult, gameindex }) => {
     setDisabled(false);
   };
   useEffect(() => {
-    if (performance.navigation.type == 1 && difficult === null) {
+    if (performance.navigation.type == 1 && difficult === null ) {
       window.location.href = "/SettingMemory";
     }
     shuffleCards();
   }, []);
   useEffect(() => {
-    if (answers === difficult) {
+    if (answers === difficult?.kolvo) {
       setIsRunning(false);
       if (record <= time || record === null) {
         setRecord(time);
-        localStorage.setItem("recordMemory", `${time} сек`);
+        localStorage.setItem("recordMemory", `${(time/1000).toFixed(2)} сек`);
       }
     }
   }, [answers]);
@@ -179,7 +182,7 @@ export const Memory = memo(({ difficult, gameindex }) => {
               disabled={disabled}
             />
           ))}
-          {answers === difficult && (
+          {answers === difficult?.kolvo && (
             <div className={style["win"]}>
               <p>Победа!</p>
               <Link to="/Statics">

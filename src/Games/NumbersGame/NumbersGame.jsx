@@ -24,7 +24,7 @@ const Answer = ({
   const time = () =>
     setTimeout(() => {
       setSpanZIndex(-1);
-    }, difficult * 1000);
+    }, difficult?.kolvo * 1000);
   useEffect(() => {
     time();
   }, []);
@@ -68,7 +68,7 @@ export const NumbersGame = ({ difficult, gameindex }) => {
   const [noAccesAnswer, setNoAccesAnswer] = useState(0);
   const [select, setSelect] = useState(1);
   const timerRef = useRef("");
-  const [timer, setTimer] = useState(difficult);
+  const [timer, setTimer] = useState(difficult?.kolvo);
   const [idHisGame, setIdHisGame] = useAtom(idHistoryGame);
   const [record, setRecord] = useState(localStorage.getItem("recordNumbers"));
   const [StatickMassHistory, setStatickMassHistory] = useAtom(
@@ -89,26 +89,27 @@ export const NumbersGame = ({ difficult, gameindex }) => {
       title: Cards[gameindex].title,
       img: Cards[gameindex].img,
       id: idHisGame,
+      diff: difficult?.diff,
     };
-    const existingHistory =
-      JSON.parse(localStorage.getItem("StatickMassHistory")) || [];
-    const updatedHistory = [historyCard];
-    existingHistory.forEach((item) => {
-      if (item.scored > historyCard.scored) {
-        updatedHistory.push(item);
-      }
-    });
+    if (difficult?.diff) {
+      const existingHistory =
+        JSON.parse(localStorage.getItem("StatickMassHistory")) || [];
+      const updatedHistory = [...existingHistory, historyCard];
 
-    setStatickMassHistory(updatedHistory);
-    localStorage.setItem("StatickMassHistory", JSON.stringify(updatedHistory));
-  }, [accesAnswer]);
+      setStatickMassHistory(updatedHistory);
+      localStorage.setItem(
+        "StatickMassHistory",
+        JSON.stringify(updatedHistory)
+      );
+    }
+  }, [timer]);
   useEffect(() => {
     if (NumberOrder === answer) {
       setAccesAnswer((prev) => prev + 1);
       setAnswer((prev) => prev + 1);
       setNumberOrder(0);
       setSelect(1);
-      setTimer(difficult);
+      setTimer(difficult?.kolvo);
       timerRef.current.style.visibility = "visible";
       if (record < accesAnswer || record === null) {
         setRecord(accesAnswer);
@@ -119,7 +120,7 @@ export const NumbersGame = ({ difficult, gameindex }) => {
       setAnswer((prev) => prev + 1);
       setNumberOrder(0);
       setSelect(1);
-      setTimer(difficult);
+      setTimer(difficult?.kolvo);
       timerRef.current.style.visibility = "visible";
     }
   }, [NumberOrder, answer]);
@@ -164,7 +165,7 @@ export const NumbersGame = ({ difficult, gameindex }) => {
     shuffleCards();
   }, [answer]);
   useEffect(() => {
-    const timers = setTimeout(() => setTimer(timer - 1), 1000);
+    const timers = setTimeout(() => setTimer((prev) => prev - 1), 1000);
     if (timer == 0) {
       clearTimeout(timers);
       timerRef.current.style.visibility = "hidden";
@@ -188,8 +189,8 @@ export const NumbersGame = ({ difficult, gameindex }) => {
             setSelect(null);
             setAnswer(3);
             setAccesAnswer(1);
-            setTimer(difficult);
-            setNoAccesAnswer(0)
+            setTimer(difficult?.kolvo);
+            setNoAccesAnswer(0);
             timerRef.current.style.visibility = "visible";
           }}
         >

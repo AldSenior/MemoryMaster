@@ -6,12 +6,12 @@ import { Alert } from "@gravity-ui/uikit";
 
 function Selectdiff({ level, selected, setQuanity, DIFF_NAMES, setAlertVis }) {
   const handleClick = () => {
-    setQuanity(DIFF_NAMES[level].kolvo);
+    setQuanity(DIFF_NAMES[level]);
     setAlertVis(false)
 
   };
 
-  const isSelected = selected === DIFF_NAMES[level].kolvo;
+  const isSelected = selected === DIFF_NAMES[level];
 
   return (
     <li
