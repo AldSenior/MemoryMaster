@@ -4,6 +4,9 @@
   font-size: 24px;
   align-items: center;
   gap: 16px;
+  p,li{
+    cursor: pointer;
+  }
 
   .alert{
     position: absolute;
@@ -94,5 +97,3 @@
     rgb(174, 206, 100) 118.2%
   );
 }
-
-
