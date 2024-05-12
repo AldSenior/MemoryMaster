@@ -19,7 +19,7 @@ const Timer = memo(({ time, setTime, isRunning, setIsRunning }) => {
         }
 
         return () => clearInterval(interval);
-    }, [isRunning, setTime]);
+    }, [isRunning, time]);
 
     const selfTime = (time / 1000).toFixed(1);
 

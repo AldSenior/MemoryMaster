@@ -36,7 +36,7 @@ export const Statics = () => {
       "StatickMassHistory",
       JSON.stringify(sortedHistoryByDate)
     );
-  }, [StatickMassHistory]);
+  }, []);
   return (
     <div className={style["Statics"]}>
       <div className={style["LeftBlockStaticsWeek"]}>
@@ -91,7 +91,7 @@ export const Statics = () => {
                 <div className={style["recorde"]}>
                   <p>{item.title}</p>
                   <p>Рекорд:{Records[index].record}</p>
-                  <p>Последняя активность:{item.currentDate}</p>
+                  <p>Поставлен:{item.currentDate}</p>
                 </div>
               </div>
             );

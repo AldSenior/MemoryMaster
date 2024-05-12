@@ -70,7 +70,6 @@ export const NumbersGame = ({ difficult, gameindex }) => {
   const timerRef = useRef("");
   const [timer, setTimer] = useState(difficult?.kolvo);
   const [idHisGame, setIdHisGame] = useAtom(idHistoryGame);
-  const [record, setRecord] = useState(localStorage.getItem("recordNumbers"));
   const [StatickMassHistory, setStatickMassHistory] = useAtom(
     atomStatickMassHistory
   );
@@ -111,9 +110,12 @@ export const NumbersGame = ({ difficult, gameindex }) => {
       setSelect(1);
       setTimer(difficult?.kolvo);
       timerRef.current.style.visibility = "visible";
-      if (record < accesAnswer || record === null) {
-        setRecord(accesAnswer);
-        localStorage.setItem("recordNumbers", accesAnswer);
+      if (accesAnswer < localStorage.getItem("recordNumbers")) {
+        localStorage.setItem("recordNumbers", `${accesAnswer} очков`);
+        localStorage.setItem(
+          "timeCurrentDateNumbersGame",
+          new Date().toLocaleString("ru-ru")
+        );
       }
     }
     if (NumberOrder === answer + 1) {

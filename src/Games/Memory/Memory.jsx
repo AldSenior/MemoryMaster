@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, memo } from "react";
+import { useState, useEffect, useCallback, memo } from "react";
 import SingleCard from "../../Components/SingleCard/SingleCard";
 import style from "./memory.module.css";
 import { colors } from "../../colors";
@@ -19,7 +19,7 @@ function shuffle(array) {
 shuffle(colors);
 export const Memory = memo(({ difficult, gameindex }) => {
   const [currentDate, setCurrentDate] = useState(
-    localStorage.getItem("timeCurrentDateMemoryGame") || "ещё не заходил"
+    localStorage.getItem("timeCurrentDateMemoryGame")
   );
   const [cards, setCards] = useState([]);
   const [idHisGame, setIdHisGame] = useAtom(idHistoryGame);
@@ -30,10 +30,11 @@ export const Memory = memo(({ difficult, gameindex }) => {
   const [answers, setAnswers] = useState(0);
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(true);
-  const [record, setRecord] = useState(localStorage.getItem("recordMemory"));
   const [StatickMassHistory, setStatickMassHistory] = useAtom(
     atomStatickMassHistory
   );
+  const currentdate = new Date();
+  const datetime = currentdate.toLocaleString("ru-ru");
   const cardColors = Array(difficult?.kolvo)
     .fill(0)
     .map((item, index) => {
@@ -50,33 +51,28 @@ export const Memory = memo(({ difficult, gameindex }) => {
   }, [cardColors]);
 
   useEffect(() => {
-    const currentdate = new Date();
-    const datetime = currentdate.toLocaleString("ru-ru");
     const interval = setInterval(() => {
       setCurrentDate(datetime);
-      localStorage.setItem("timeCurrentDateMemoryGame", datetime);
     }, 1000);
   }, [time]);
-
   useEffect(() => {
-    const currentdate = new Date();
-    const datetime = currentdate.toLocaleString("ru-ru");
-
     const historyCard = {
-      scored: `${(time/1000).toFixed(2)} сек`,
-      currentDate: datetime,
+      scored: `${(time / 1000).toFixed(2)} сек`,
+      currentDate: currentDate,
       title: Cards[gameindex].title,
       img: Cards[gameindex].img,
       id: idHisGame,
-      diff:difficult?.diff
+      diff: difficult?.diff,
     };
     if (difficult?.diff) {
       const existingHistory =
-      JSON.parse(localStorage.getItem("StatickMassHistory")) || [];
-    const updatedHistory = [...existingHistory, historyCard];
-
-    setStatickMassHistory(updatedHistory);
-    localStorage.setItem("StatickMassHistory", JSON.stringify(updatedHistory));
+        JSON.parse(localStorage.getItem("StatickMassHistory")) || [];
+      const updatedHistory = [...existingHistory, historyCard];
+      setStatickMassHistory(updatedHistory);
+      localStorage.setItem(
+        "StatickMassHistory",
+        JSON.stringify(updatedHistory)
+      );
     }
   }, [time]);
 
@@ -113,7 +109,7 @@ export const Memory = memo(({ difficult, gameindex }) => {
     setDisabled(false);
   };
   useEffect(() => {
-    if (performance.navigation.type == 1 && difficult === null ) {
+    if (performance.navigation.type == 1 && difficult === null) {
       window.location.href = "/SettingMemory";
     }
     shuffleCards();
@@ -121,9 +117,12 @@ export const Memory = memo(({ difficult, gameindex }) => {
   useEffect(() => {
     if (answers === difficult?.kolvo) {
       setIsRunning(false);
-      if (record <= time || record === null) {
-        setRecord(time);
-        localStorage.setItem("recordMemory", `${(time/1000).toFixed(2)} сек`);
+      if (
+        (time / 1000).toFixed(2) < localStorage.getItem("recordMemory") ||
+        localStorage.getItem("recordMemory") === null
+      ) {
+        localStorage.setItem("recordMemory", `${(time / 1000).toFixed(2)} сек`);
+        localStorage.setItem("timeCurrentDateMemoryGame", currentDate);
       }
     }
   }, [answers]);
