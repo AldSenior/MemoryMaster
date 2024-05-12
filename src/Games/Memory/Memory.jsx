@@ -170,9 +170,9 @@ export const Memory = memo(({ difficult, gameindex }) => {
       </div>
       <div className={style["Game"]}>
         <div className={style["field"]} style={{ width: `${cardSize}px` }}>
-          {cards.map((card) => (
+          {cards.map((card, index) => (
             <SingleCard
-              key={card.id}
+              key={index}
               card={card}
               color={card.color}
               src={card.src}

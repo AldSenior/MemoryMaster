@@ -92,7 +92,6 @@ export const NumbersOrdersGame = ({ difficult, gameindex }) => {
     }
   }, [time]);
   useEffect(() => {
-    console.log(difficult);
     if (performance.navigation.type == 1 && difficult === null) {
       window.location.href = "/SettingMemory";
     }
