@@ -40,3 +40,13 @@ body {
   margin: 0;
   padding: 0;
 }
+.divsuper{
+  width: 36px;
+  height: 36px;
+  background-image: url("../public/imgs/logo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: 3;
+
+}

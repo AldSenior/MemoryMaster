@@ -11,6 +11,7 @@ import { Home } from "./Pages/Home/Home";
 import { Statics } from "./Pages/Statics/Statics";
 import { Cards } from "./Cards";
 import { atom } from "jotai";
+import { DIV_ } from "./Components/DIV_";
 export const atomStatickMassHistory = atom([]);
 export const App = memo(() => {
   const [quanity, setQuanity] = useState(null);
@@ -22,7 +23,7 @@ export const App = memo(() => {
   );
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeOnSite(prev=>prev+1000);
+      setTimeOnSite((prev) => prev + 1000);
       localStorage.setItem("timeOnSite", JSON.stringify(timeOnSite));
     }, 1000);
 
