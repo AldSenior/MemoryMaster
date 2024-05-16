@@ -26,8 +26,11 @@ export const DIV_ = () => {
 			document.addEventListener('mouseup', handleMouseUp)
 			document.addEventListener('dragstart', handleDragStart)
 		}
-		localStorage.setItem('Ydiv', Ydiv)
-		localStorage.setItem('Xdiv', Xdiv)
+		if (Ydiv > 0) {
+			localStorage.setItem('Ydiv', Ydiv)
+			localStorage.setItem('Xdiv', Xdiv)
+		}
+
 		return () => {
 			document.removeEventListener('mousemove', handleMouseMove)
 			document.removeEventListener('mouseup', handleMouseUp)

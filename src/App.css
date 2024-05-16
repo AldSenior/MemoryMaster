@@ -1,52 +1,55 @@
-
-
 @font-face {
-  font-family: 'RobotoNormal';
-  src: local('Roboto Light'), local('Roboto-Light'), url('../public/fonts/Robotolight.woff2') format('woff2'), url('../public/fonts/Robotolight.woff') format('woff'), url('../public/fonts/Robotolight.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
+	font-family: 'RobotoNormal';
+	src: local('Roboto Light'), local('Roboto-Light'),
+		url('../public/fonts/Robotolight.woff2') format('woff2'),
+		url('../public/fonts/Robotolight.woff') format('woff'),
+		url('../public/fonts/Robotolight.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
 }
 @font-face {
-  font-family: 'Roboto Bold';
-  src: local('Roboto Bold'), local('Roboto-Bold'), url('../public/fonts/Robotobold.woff2') format('woff2'), url('../public/fonts/Robotobold.woff') format('woff'), url('../public/fonts/Robotobold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
+	font-family: 'Roboto Bold';
+	src: local('Roboto Bold'), local('Roboto-Bold'),
+		url('../public/fonts/Robotobold.woff2') format('woff2'),
+		url('../public/fonts/Robotobold.woff') format('woff'),
+		url('../public/fonts/Robotobold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
 }
 @font-face {
-  font-family: "RalewayRegular";
-  src: url("../public/fonts/RalewayRegular.ttf") format("truetype");
-  font-style: normal;
-  font-weight: normal;
+	font-family: 'RalewayRegular';
+	src: url('../public/fonts/RalewayRegular.ttf') format('truetype');
+	font-style: normal;
+	font-weight: normal;
 }
 @font-face {
-  font-family: "RalewayBold";
-  src: url("../public/fonts/RalewayRegular.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 700;
+	font-family: 'RalewayBold';
+	src: url('../public/fonts/RalewayRegular.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 700;
 }
 
 body {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: #141416;
-  position: relative;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	background-color: #141416;
+	position: relative;
 }
 * {
-  color: white;
-  font-family: RalewayRegular;
-  margin: 0;
-  padding: 0;
+	color: white;
+	font-family: RalewayRegular;
+	margin: 0;
+	padding: 0;
 }
-.divsuper{
-  width: 36px;
-  height: 36px;
-  background-image: url("../public/imgs/logo.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: absolute;
-  z-index: 3;
-
+.divsuper {
+	width: 36px;
+	height: 36px;
+	background-image: url('../public/imgs/logo.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: absolute;
+	z-index: 3;
 }
