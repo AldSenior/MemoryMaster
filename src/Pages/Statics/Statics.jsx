@@ -1,3 +1,8 @@
+import {
+	ChartAreaStackedNormalized,
+	ClockArrowRotateLeft,
+} from '@gravity-ui/icons'
+import { Button, Icon } from '@gravity-ui/uikit'
 import Chart from 'chart.js/auto'
 import { atom } from 'jotai'
 import { useEffect, useState } from 'react'
@@ -6,7 +11,6 @@ import { TimeOnSite } from '../../Components/TimeOnSite'
 import { DayStreakCounter } from '../../DayStreakCounter'
 import { Records } from '../../Records'
 import style from './statics.module.css'
-const gameindex = localStorage.getItem('gameindex')
 export const idHistoryGame = atom(
 	JSON.parse(localStorage.getItem('StatickMassHistory')?.length || 0)
 )
@@ -14,7 +18,7 @@ export const Statics = () => {
 	const [StatickMassHistory, setStatickMassHistory] = useState(
 		JSON.parse(localStorage.getItem('StatickMassHistory')) || []
 	)
-
+	const [StaticMod, setStaticMod] = useState(false)
 	useEffect(() => {
 		const uniqueHistory = StatickMassHistory.reduce((acc, current) => {
 			const existing = acc.find(item => item.id === current.id)
@@ -35,7 +39,9 @@ export const Statics = () => {
 
 		// Render the histogram using Chart.js
 		// Inside the useEffect hook where the histogram is rendered
-		const ctx = document.getElementById('activityHistoryChart').getContext('2d')
+		const ctx = document
+			.getElementById('activityHistoryChart')
+			?.getContext('2d')
 
 		new Chart(ctx, {
 			type: 'bar',
@@ -43,20 +49,20 @@ export const Statics = () => {
 				labels: sortedHistoryByDate.map(item => item.title),
 				datasets: [
 					{
-						label: 'Scores',
+						label: 'Очков',
 						data: sortedHistoryByDate.map(item => parseFloat(item.scored)),
 						backgroundColor: () => {
 							return sortedHistoryByDate.map(item => {
 								if (item.title == 'Найди пару') {
 									return 'rgba(255, 99, 132, 0.6)'
 								} else if (item.title == 'Последовательность цифр') {
-									return 'rgba(54, 162, 235, 0.6)'
+									return 'red'
 								} else {
 									return 'yellow'
 								}
 							})
 						},
-						borderColor: 'rgba(54, 162, 235, 1)',
+						borderColor: 'black',
 						borderWidth: 1,
 					},
 				],
@@ -74,27 +80,46 @@ export const Statics = () => {
 			'StatickMassHistory',
 			JSON.stringify(sortedHistoryByDate)
 		)
-	}, [])
+	}, [StaticMod])
+
 	return (
 		<div className={style['Statics']}>
 			<div className={style['LeftBlockStaticsWeek']}>
 				<h1>История активности</h1>
 				<div className={style['StaticsBar']}>
-					{StatickMassHistory.map((item, index) => {
-						return (
-							<div key={index} className={style['stored']}>
-								<img src={item.img} alt='' />
-								<div className={style['recorde']}>
-									<p>{item.title}</p>
-									<p className={style['scored']}>
-										<span>{item.scored}</span>
-										<span>{item.currentDate}</span>
-										<span>{item.diff}</span>
-									</p>
+					<Button
+						className={style['switchBtn']}
+						view='normal-contrast'
+						size='l'
+						onClick={() => setStaticMod(prev => !prev)}
+					>
+						Переключить на
+						<Icon
+							data={
+								StaticMod ? ChartAreaStackedNormalized : ClockArrowRotateLeft
+							}
+							size={18}
+						/>
+					</Button>
+					{StaticMod ? (
+						StatickMassHistory.map((item, index) => {
+							return (
+								<div key={index} className={style['stored']}>
+									<img src={item.img} alt='' />
+									<div className={style['recorde']}>
+										<p>{item.title}</p>
+										<p className={style['scored']}>
+											<span>{item.scored}</span>
+											<span>{item.currentDate}</span>
+											<span>{item.diff}</span>
+										</p>
+									</div>
 								</div>
-							</div>
-						)
-					})}
+							)
+						})
+					) : (
+						<canvas id='activityHistoryChart'></canvas>
+					)}
 				</div>
 				<div className={style['MyPerfom']}>
 					<div className={style['blockperf']}>
@@ -134,9 +159,6 @@ export const Statics = () => {
 							</div>
 						)
 					})}
-				</div>
-				<div className={style['StaticsChart']}>
-					<canvas id='activityHistoryChart'></canvas>
 				</div>
 			</div>
 		</div>
