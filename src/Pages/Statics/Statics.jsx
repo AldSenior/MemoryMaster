@@ -18,27 +18,23 @@ export const Statics = () => {
 	const [StatickMassHistory, setStatickMassHistory] = useState(
 		JSON.parse(localStorage.getItem('StatickMassHistory')) || []
 	)
-	const [StaticMod, setStaticMod] = useState(false)
-	useEffect(() => {
-		const uniqueHistory = StatickMassHistory.reduce((acc, current) => {
-			const existing = acc.find(item => item.id === current.id)
-			if (!existing) {
+	const [StaticMod, setStaticMod] = useState(true)
+	const uniqueHistory = StatickMassHistory.reduce((acc, current) => {
+		const existing = acc.find(item => item.id === current.id)
+		if (!existing) {
+			acc.push(current)
+		} else {
+			if (parseFloat(current.scored) > parseFloat(existing.scored)) {
+				acc = acc.filter(item => item.id !== current.id)
 				acc.push(current)
-			} else {
-				if (parseFloat(current.scored) > parseFloat(existing.scored)) {
-					acc = acc.filter(item => item.id !== current.id)
-					acc.push(current)
-				}
 			}
-			return acc
-		}, [])
+		}
+		return acc
+	}, [])
 
-		const sortedHistoryByDate = uniqueHistory.sort(
-			(a, b) => new Date(a.currentDate) - new Date(b.currentDate)
-		)
-
-		// Render the histogram using Chart.js
-		// Inside the useEffect hook where the histogram is rendered
+	const sortedHistoryByDate = uniqueHistory.sort()
+	const reverseHis = [...sortedHistoryByDate].reverse()
+	useEffect(() => {
 		const ctx = document
 			.getElementById('activityHistoryChart')
 			?.getContext('2d')
@@ -46,13 +42,13 @@ export const Statics = () => {
 		new Chart(ctx, {
 			type: 'bar',
 			data: {
-				labels: sortedHistoryByDate.map(item => item.title),
+				labels: reverseHis.map(item => item.title),
 				datasets: [
 					{
-						label: 'Очков',
-						data: sortedHistoryByDate.map(item => parseFloat(item.scored)),
+						label: 'Время/Очки',
+						data: reverseHis.map(item => parseFloat(item.scored)),
 						backgroundColor: () => {
-							return sortedHistoryByDate.map(item => {
+							return reverseHis.map(item => {
 								if (item.title == 'Найди пару') {
 									return 'rgba(255, 99, 132, 0.6)'
 								} else if (item.title == 'Последовательность цифр') {
@@ -75,7 +71,6 @@ export const Statics = () => {
 				},
 			},
 		})
-
 		localStorage.setItem(
 			'StatickMassHistory',
 			JSON.stringify(sortedHistoryByDate)
